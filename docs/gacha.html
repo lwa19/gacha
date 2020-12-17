@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Lijia Wang" />
 
+<meta name="date" content="2020-12-16" />
 
-<title>Home</title>
+<title>Modeling single pulls</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +21,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -258,6 +263,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -265,6 +333,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -308,7 +386,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Home</h1>
+<h1 class="title toc-ignore">Modeling single pulls</h1>
+<h4 class="author">Lijia Wang</h4>
+<h4 class="date">2020-12-16</h4>
 
 </div>
 
@@ -336,7 +416,7 @@ $(document).ready(function () {
 <strong>Last updated:</strong> 2020-12-16
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>gacha/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -358,6 +438,66 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
 <p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20201216code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20201216)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20201216code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20201216)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
@@ -400,7 +540,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML (<code>docs/index.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/gacha.Rmd</code>) and HTML (<code>docs/gacha.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -429,7 +569,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/lwa19/gacha/blob/e77d1c4a76174b82e06d8efbcafa27c63cad1a2d/analysis/index.Rmd" target="_blank">e77d1c4</a>
+<a href="https://github.com/lwa19/gacha/blob/e77d1c4a76174b82e06d8efbcafa27c63cad1a2d/analysis/gacha.Rmd" target="_blank">e77d1c4</a>
 </td>
 <td>
 Lijia Wang
@@ -441,74 +581,6 @@ Lijia Wang
 single pulls
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/lwa19/gacha/50de199b2b2992191d9657c9c6e25f75c02373bf/docs/index.html" target="_blank">50de199</a>
-</td>
-<td>
-Lijia Wang
-</td>
-<td>
-2020-12-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/lwa19/gacha/blob/09df6509a2225ab8a61d3c262ec0f8d8d8855116/analysis/index.Rmd" target="_blank">09df650</a>
-</td>
-<td>
-Lijia Wang
-</td>
-<td>
-2020-12-16
-</td>
-<td>
-intro
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/lwa19/gacha/8d500d1e05468b56892ee70d281f5cd639cb63d8/docs/index.html" target="_blank">8d500d1</a>
-</td>
-<td>
-Lijia Wang
-</td>
-<td>
-2020-12-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/lwa19/gacha/blob/b5e36834ac00c1c7e35ddd5f40954e9117b5106b/analysis/index.Rmd" target="_blank">b5e3683</a>
-</td>
-<td>
-Lijia Wang
-</td>
-<td>
-2020-12-16
-</td>
-<td>
-First commit
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -516,46 +588,66 @@ First commit
 </div>
 </div>
 </div>
-<div id="motivation" class="section level2">
-<h2>Motivation</h2>
-<p>Say you’re me and instead of doing anything useful in life, you are playing gacha games. However, you’re a broke and sad college student, so instead of paying for extra in-game currency like the game companies expect you to do during your favorite character’s banner, you have to work hard to save up for them. A natural question that follows is that, how many in game currency do you need to save up?</p>
-<p>In other words, I forgot everything in probabilities so I’d like to review. But why not do it in a fun way.</p>
-</div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>With the increased spread of smartphones in worldwide, purchasing and downloading apps is starting to take up a large portion of market surrounding mobile devices. Gameing applications, in particular, makes up for nearly half of the downloads for smartphone apps <span class="citation">(Hiramatsu 2019)</span>. In our project, we are focusing on a new type of mobile game that can be played free of charge, but offer additional paid content such as advantageous items or extra number of plays <span class="citation">(Hiramatsu 2019)</span>. One such type of games, generally named “gacha games”, employs a lottery-like system, where player can spend in-game currency in exchange for “rolls” in the “gacha”, a parallel to “tickets” in a raffle or lottery. The “rewards” in the gacha are cards of tiered-rarity. The most generic gacha rewards system have characters from 1-star (Normal rarity) to 5-star (Super Super Rare, or SSR, rarity). For each pull, the player has a set probability of pulling a card of each rarity, and this probability decreases with increased rarity (star count) of the card.</p>
-<p>The problem around gacha games is that the uncertainty of the pull result draws the players to spend more money to purchase more pulls, until a desired card is drawn. This frequently results in large amounts of money being spent on gacha games. In 2012, one such type of gacha games, the Complete Gacha, was banned by the Japanese Consumer Affairs Agency <span class="citation">(Akimoto 2014)</span>. The Complete Gacha is set up such that players need to obtain all items in the lottery (we will refer to it as “gacha” in this study) to obtain an item of higher rarity. The Complete Gacha is an example of the <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem">“Coupon collector’s problem”</a>. The expected number of trials (pulls) needed to complete the set grows as <span class="math inline">\(\Theta(nlog(n))\)</span>, with n being the number in the set of cards in the gacha.</p>
-<p>In this project, I would like to model the distinct gacha system employed by a few popular mobile games, with specific calculations for some games according to their published probability data. I hope to calculate the expected number of trials to obtain the desired character under each system and the variance of the estimation.</p>
-<p>Lastly, I would like to note that even though each game company has published probabilities for each card tier, we do not know the exact algorithm behind each gacha system and the accuracy of that information. The model built will be a simplification a generic gacha algorithm and therefore will probably not be exactly representative of the gacha in specific games. Another drawback of our model is that we cannot model the specific “character” in the card outcome. We can only estimate the expected number of trials needed to obtain a card of a certain rarity.</p>
+<p>In this section, we will introduce and model a gacha scenario where all characters in the same rarity level have the same probability of getting pulled, and pulls are performed one at a time (therefore no bonuses are applied). We would like to find the expected number of trials until we obtain <em>any</em> SSR character.</p>
 </div>
-<div id="types-of-gacha-mechanisms" class="section level2">
-<h2>Types of Gacha Mechanisms</h2>
-<p>The most common type of Gacha in popular mobile games typically have two different items in the gacha pool: equipment and character. While both equipment and character categories have tiered rarity, the probability to pull any specific equipment tend to be higher than the probability to pull a character of the same category. We will approach the analysis of this feature by modeling a simple gacha with only character or equipment categories, and then add the other category to see how it changes our model.</p>
-<p>Gacha algorithm is further complicated by the “10-pull bonus”. When making individual pulls, the probability of pulling each character will be as stated in the gacha rules; when making a large number of pulls (e.g. 10-pull), some gacha games will offer some sort of bonus: one extra free pull, a guaranteed character card, or a guaranteed card above a certain rarity (4 star+). On top of this “10-pull bonus”, some gacha systems also have a “pity mechanism”, where for each pull you made after a certain pulls, the probability of obtaining a character of top rarity (5 star or SSR) will increase linearly with the number of pulls attempted, therefore guaranteeing a character of top rarity after a certain number of pulls.</p>
-<p>The majority of the gacha games employ one or more aspects of these gacha mechanisms mentioned. Therefore, we will conduct three case studies on popular gacha games at the moment: <a href="https://fate-go.us/">Fate/Grand Order</a> (North America server), <a href="https://www.arknights.global/">Arknights</a> (Global mobile server), and <a href="https://genshin.mihoyo.com/en">Genshin Impact</a> (North America mobile server).</p>
+<div id="method" class="section level2">
+<h2>Method</h2>
+<div id="pulls-can-be-modeled-as-a-bernoulli-process" class="section level3">
+<h3>Pulls can be modeled as a Bernoulli Process</h3>
+<p>In this scenario, the probability of getting each tier is constant, and the probability to pull each character within the tier is the same. Let the probability of pulling an SSR be <span class="math inline">\(p\)</span>, and suppose there are <span class="math inline">\(n\)</span> characters in the SSR tier, then the probability to pull each individual SSR character is <span class="math inline">\(\frac{p}{n}\)</span>. We also assume that pulls are performed one at a time and under the assumption that no previous pull affects the result of the next pull.</p>
+<p>This process can be modeled as a simple Bernoulli process with an unfair coin, where probability of obtaining an SSR character (“success”) is <span class="math inline">\(p\)</span> and not obtaining an SSR (“failure”) is <span class="math inline">\((1-p)\)</span>. This means we would probably expect on average <span class="math inline">\(1/p\)</span> pulls to obtain the first SSR.</p>
 </div>
-<div id="methods" class="section level2">
-<h2>Methods:</h2>
-<ul>
-<li><p><a href="gacha.html">Single pulls</a></p></li>
-<li></li>
-</ul>
+<div id="poisson-distribution" class="section level3">
+<h3>Poisson Distribution</h3>
+<p>We notice that the probability of success <span class="math inline">\(p\)</span> is typically very small in each gacha game, ranging from 0.600% (Genshin Impact) to 2.000% (Arknights) in the examples we use. Therefore, we are safe to approximate the probability of SSR pulls with a Poisson distribution.</p>
+<p><span class="math display">\[ f(k; \lambda) = Pr(X=k) = \frac{\lambda^k}{k!}e^{-\lambda} \]</span></p>
+<p>Since <span class="math inline">\(p\)</span> small, we can approximate <span class="math inline">\(\lambda = np\)</span>. We can subsequently rephrase our question into “in how many trials can we maximize the probability of obtaining exactly 1 SSR card”?</p>
 </div>
-<div id="case-studies" class="section level2">
-<h2>Case Studies:</h2>
-<p>Fate/Grand Order: “10-pull bonus” only; characters and equipment in gacha</p>
-<p>Arknights: “10-pull bonus” and “pity mechanism”; only character cards in gacha</p>
-<p>Genshin Impact: “10-pull bonus” and “pity mechanism”; character and equipment in gacha</p>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2>References</h2>
-<div id="refs" class="references">
-<div id="ref-akimoto2014japan">
-<p>Akimoto, A. 2014. “Japan’s Social-Gaming Industry Hindered by Government’s Anti-Gambling Move. The Japan Times.”</p>
+<div id="application" class="section level2">
+<h2>Application</h2>
+<p>We plotted the probabilities of obtaining 1, 2, and 3 SSR cards in 1 to 500 pulls. Here we used the Fate/Grand Order Saint Quartz Summon Distribution Rate on an non-event banner. We define “success” as pulling a 5-star servant (character), and the probability is 1.000% (according to in-game statistics provided).</p>
+<pre><code>[1] &quot;Number of pulls that maximizes probability of 1 SSR is 100&quot;</code></pre>
+<pre><code>[1] &quot;Number of pulls that maximizes probability of 2 SSRs is 200&quot;</code></pre>
+<pre><code>[1] &quot;Number of pulls that maximizes probability of 3 SSRs is 300&quot;</code></pre>
+<p><img src="figure/gacha.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="ref-hiramatsu2019research">
-<p>Hiramatsu, Ayako. 2019. “A Research of Social Game Users’ Attitude to&quot; Gacha&quot; Probability Announcement.” In <em>2019 8th International Congress on Advanced Applied Informatics (Iiai-Aai)</em>, 115–20. IEEE.</p>
-</div>
+<div id="remarks" class="section level2">
+<h2>Remarks:</h2>
+<p>We can observe that performing single-pulls alone is not very statistically interesting.</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre><code>R version 3.6.2 (2019-12-12)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS  10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.3      rprojroot_1.3-2 digest_0.6.25   later_1.0.0    
+ [5] R6_2.4.1        backports_1.1.5 git2r_0.26.1    magrittr_1.5   
+ [9] evaluate_0.14   stringi_1.4.6   rlang_0.4.5     fs_1.3.2       
+[13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_3.6.2    
+[17] stringr_1.4.0   glue_1.3.2      httpuv_1.5.2    xfun_0.12      
+[21] yaml_2.2.1      compiler_3.6.2  htmltools_0.4.0 knitr_1.28     </code></pre>
 </div>
 </div>
 
@@ -573,6 +665,8 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
+</div>
+</div>
 
 </div>
 
@@ -605,6 +699,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
