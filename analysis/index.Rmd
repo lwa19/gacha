@@ -35,6 +35,12 @@ Gacha algorithm is further complicated by the "10-pull bonus". When making indiv
 
 The majority of the gacha games employ one or more aspects of these gacha mechanisms mentioned. Therefore, we will conduct three case studies on popular gacha games at the moment: [Fate/Grand Order](https://fate-go.us/) (North America server), [Arknights](https://www.arknights.global/) (Global mobile server), and [Genshin Impact](https://genshin.mihoyo.com/en) (North America mobile server). 
 
+## Methods: 
+
+- [Single pulls](gacha.html)
+
+- 
+
 ## Case Studies: 
 
 Fate/Grand Order: "10-pull bonus" only; characters and equipment in gacha

@@ -1,0 +1,61 @@
+---
+title: "Modeling single pulls"
+author: "Lijia Wang"
+date: "2020-12-16"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+## Introduction
+
+In this section, we will introduce and model a gacha scenario where all characters in the same rarity level have the same probability of getting pulled, and pulls are performed one at a time (therefore no bonuses are applied). We would like to find the expected number of trials until we obtain *any* SSR character. 
+
+## Method
+
+
+### Pulls can be modeled as a Bernoulli Process
+
+In this scenario, the probability of getting each tier is constant, and the probability to pull each character within the tier is the same. Let the probability of pulling an SSR be $p$, and suppose there are $n$ characters in the SSR tier, then the probability to pull each individual SSR character is $\frac{p}{n}$. We also assume that pulls are performed one at a time and under the assumption that no previous pull affects the result of the next pull. 
+
+This process can be modeled as a simple Bernoulli process with an unfair coin, where probability of obtaining an SSR character ("success") is $p$ and not obtaining an SSR ("failure") is $(1-p)$. This means we would probably expect on average $1/p$ pulls to obtain the first SSR.
+
+
+### Poisson Distribution
+
+We notice that the probability of success $p$ is typically very small in each gacha game, ranging from 0.600% (Genshin Impact) to 2.000% (Arknights) in the examples we use. Therefore, we are safe to approximate the probability of SSR pulls with a Poisson distribution. 
+
+$$ f(k; \lambda) = Pr(X=k) = \frac{\lambda^k}{k!}e^{-\lambda} $$
+
+Since $p$ small, we can approximate $\lambda = np$. We can subsequently rephrase our question into "in how many trials can we maximize the probability of obtaining exactly 1 SSR card"? 
+
+## Application
+
+We plotted the probabilities of obtaining 1, 2, and 3 SSR cards in 1 to 500 pulls. Here we used the Fate/Grand Order Saint Quartz Summon Distribution Rate on an non-event banner. We define "success" as pulling a 5-star servant (character), and the probability is 1.000% (according to in-game statistics provided). 
+
+```{r}
+p = 0.01 # F/GO rate for a 5* servant (character)
+n = seq(1,500)
+k = 1
+lambda = n*p
+p.pois = lambda*exp(-lambda)
+p.2 = lambda^2/2*exp(-lambda)
+p.3 = lambda^3/6*exp(-lambda)
+(paste("Number of pulls that maximizes probability of 1 SSR is", which.max(p.pois)))
+(paste("Number of pulls that maximizes probability of 2 SSRs is", which.max(p.2)))
+(paste("Number of pulls that maximizes probability of 3 SSRs is", which.max(p.3)))
+plot(n, p.pois, type = 'l', main = "Probability of obtaining k SSR cards through single pulls", 
+     xlab = "Number of pulls (n)", ylab = "Probability")
+lines(n, p.2, col = 2)
+lines(n, p.3, col = 4)
+legend('topright', legend=c('k = 1', 'k = 2', 'k = 3'), col = c('black', 2, 4), lty = 1)
+```
+
+
+## Remarks: 
+
+We can observe that performing single-pulls alone is not very statistically interesting. 
