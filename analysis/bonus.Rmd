@@ -1,0 +1,65 @@
+---
+title: "bonus"
+author: "Lijia Wang"
+date: "2020-12-16"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+In this section, we will explore how making a "10-pull" instead of using single pulls changes the probability model we constructed for the generic [single-pull mechanism](gacha.html). Most gacha games encourage 10x pulls in order to incentivize the players to purchase more in-game currency and make extra pulls than they normally would, since presumably a player only doing single pulls would stop as soon as they obtained the card they desire. Therefore, they offer various "10-pull bonuses", where they either provide an extra free pull, or guarantee a card above a certain rarity. 
+
+We will continue to use our assumption regarding the i.i.d nature of each Bernoulli trial, and that our player would like an SSR card. However, most of these "10-pull" bonuses do not offer a guaranteed card of top rarity, but normally one above the second highest rarity. So the 10-pull bonus for our player could be an SR or an SSR card. 
+
+For most games, it is unclear the distribution in probability between the SR and SSR cards for the 10-pull bonus. We will assume that they follow the same ratio their non-bonus probabilities, only that they now add up to 1 for this bonus pull. 
+
+## Method
+
+We're unsure about how the gacha algorithm employed in the game actually works, but I will assume that in this scenario, the first 9 pulls are still i.i.d Bernoulli trials. During the last pull, a new set of probabilities, which we will refer to as "bonus probabilities", will be applied regardless of whether you obtained any SR/SSR cards previously. Bonus probabilities are only assigned to SR and SSR cards only, and they add up to 1. 
+
+In any 10-pull, the probability of you NOT obtaininging an SSR card can be modeled as: you did not obtain any SSR cards in the first 9 pulls AND pulled an SR card for the bonus. 
+
+For each normal trial, let the probability of pulling any SSR card be $p$, and the probability of pulling any SR card be $q$. For the bonus probabilities, let that for an SSR card be $bp$, and that for an SR card be $bq$, where $b$ is a constant and $bp + bq = 1$
+
+Pr(no SSR in first 9 & SR in bonus) = $(1-p)^9 bq$
+
+Therefore, the probability of PULLING at least one SSR during any 10-pull is: 
+
+$$Pr(X\geq1) = 1-(1-p)^9 bq $$
+
+## Application
+
+Similarly, we will use Fate/Grand Order non-event pool as an example, and our player desire a 5-star *servant* (Note that in Fate/Grand Order, *Servants*/characters have different probabilities from *Craft Essence*/equipments). Since we only desire a subcategory of SSR cards (characters, not equipment), we need to subdivide the overall probability into character probability $p_c$, and equipment probability $p_e$. Their respective bonus probabilities can be denoted as $bp_c$ and $bp_e$. 
+
+Probabilities: 
+
+- SSR character ($p_c$): 1.000%
+
+- SSR equipment ($p_e$): 4.000%
+
+- total SSR probability ($p$): $p_c + p_e = 5.000 \%$
+
+- SR character ($q_c$): 3.000%
+
+- SR equipment ($q_e$): 12.000%
+
+- total SR probability ($q$): $q_c + q_e = 15.000 \%$
+
+- b = 5
+
+For each 10-pull: 
+
+$$Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.01)^9(5*0.15+5*0.04) = 0.132 $$
+
+As a quick comparison, the probability of obtaining more than 1 SSR for 10 single pulls are: 
+
+$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-n*p} = 1-e^{-10*0.01} = 1-0.905 = 0.095$$
+
+Which shows that the 10-pull bonus is indeed working in our favor. 
+
+## Remark 
+
+Is there a good way to visualize this? Like the pdf in [single-pulls](gacha.html)? 
+

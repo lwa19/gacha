@@ -58,4 +58,4 @@ legend('topright', legend=c('k = 1', 'k = 2', 'k = 3'), col = c('black', 2, 4), 
 
 ## Remarks: 
 
-We can observe that performing single-pulls alone is not very statistically interesting. 
+We can observe that performing single-pulls alone is not very statistically interesting. Although it is fun to see that if you pulled 100 times and still did not get one single SSR card... you're truly quite unlucky. 

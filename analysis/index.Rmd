@@ -39,7 +39,7 @@ The majority of the gacha games employ one or more aspects of these gacha mechan
 
 - [Single pulls](gacha.html)
 
-- 
+- [10-pull bonus](bonus.html)
 
 ## Case Studies: 
 
