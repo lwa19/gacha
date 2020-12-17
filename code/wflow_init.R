@@ -12,5 +12,15 @@ wflow_use_github("lwa19") # how come I always forget this useful function.
 
 
 # New pages: 
-wflow_open('analysis/index.Rmd')
+wflow_open('analysis/gacha.Rmd')
 wflow_publish("analysis/index.Rmd", "intro")
+wflow_publish(c("analysis/index.Rmd", "analysis/gacha.Rmd"), "single pulls")
+
+## scratch work:
+
+# Each pull is a Bernoulli Variable $X_i$ and are independentally and identically distributed. Therefore, we can apply the geometric distribution and obtain the probability of obtaining the first success at the $k$-th trial: 
+#   
+#   $$ Pr(X=k) = (1-p)^{k-1}p$$
+#   
+#   The expectation of a geometric distribution is $\mu = 1/p$, and the variance os $\sigma^2 = \frac{1-p}{p^2}$. 
+
