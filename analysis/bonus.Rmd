@@ -7,6 +7,11 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+library(ggplot2)
+```
+
 ## Introduction
 
 In this section, we will explore how making a "10-pull" instead of using single pulls changes the probability model we constructed for the generic [single-pull mechanism](gacha.html). Most gacha games encourage 10x pulls in order to incentivize the players to purchase more in-game currency and make extra pulls than they normally would, since presumably a player only doing single pulls would stop as soon as they obtained the card they desire. Therefore, they offer various "10-pull bonuses", where they either provide an extra free pull, or guarantee a card above a certain rarity. 
@@ -15,7 +20,7 @@ We will continue to use our assumption regarding the i.i.d nature of each Bernou
 
 For most games, it is unclear the distribution in probability between the SR and SSR cards for the 10-pull bonus. We will assume that they follow the same ratio their non-bonus probabilities, only that they now add up to 1 for this bonus pull. 
 
-## Method
+## Probability of 1+ SSR in one 10-pull
 
 We're unsure about how the gacha algorithm employed in the game actually works, but I will assume that in this scenario, the first 9 pulls are still i.i.d Bernoulli trials. During the last pull, a new set of probabilities, which we will refer to as "bonus probabilities", will be applied regardless of whether you obtained any SR/SSR cards previously. Bonus probabilities are only assigned to SR and SSR cards only, and they add up to 1. 
 
@@ -29,7 +34,7 @@ Therefore, the probability of PULLING at least one SSR during any 10-pull is:
 
 $$Pr(X\geq1) = 1-(1-p)^9 bq $$
 
-## Application
+### Application in F/GO
 
 Similarly, we will use Fate/Grand Order non-event pool as an example, and our player desire a 5-star *servant* (Note that in Fate/Grand Order, *Servants*/characters have different probabilities from *Craft Essence*/equipments). Since we only desire a subcategory of SSR cards (characters, not equipment), we need to subdivide the overall probability into character probability $p_c$, and equipment probability $p_e$. Their respective bonus probabilities can be denoted as $bp_c$ and $bp_e$. 
 
@@ -55,11 +60,61 @@ $$Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.01)^9(5*0.15+5*0.04) = 0.132 $$
 
 As a quick comparison, the probability of obtaining more than 1 SSR for 10 single pulls are: 
 
-$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-n*p} = 1-e^{-10*0.01} = 1-0.905 = 0.095$$
+$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.01} = 1-0.905 = 0.095$$
 
 Which shows that the 10-pull bonus is indeed working in our favor. 
 
+## Approximation with Binomial Distribution
+
+We will try to visualize this new probability like we did for single pulls. From our observations in the case of single pulls, the probability of obtaining 2 or more SSR character cards in 10 pulls is very small. To be precise: 
+
+$$Pr(X=2) = \frac{\lambda^2}{2!}e^{-\lambda} =  \frac{(np)^2}{2!}e^{-np} = \frac{(10*0.01)^2}{2!}e^{-10*0.01} = 0.00452$$
+
+$$Pr(X=3) = \frac{\lambda^3}{3!}e^{-\lambda} =  \frac{(np)^3}{3!}e^{-np} = \frac{(10*0.01)^3}{3!}e^{-10*0.01} = 1.508 \times 10^{-4}$$
+
+Therefore, we can approximate the probability of getting *one* SSR in any 10-pull to be very close to our calculated $Pr(X\geq1)$: 
+
+$$ Pr(X\geq1) = Pr(X=1) + Pr(X=2) + \dots $$
+$$ Pr(X=1) = Pr(X\geq 1) - [Pr(X=2) + Pr(X=3) + \dots]$$
+
+but as we have discussed before, $Pr(X=2) + Pr(X=3) - \dots$ is small, therefore we can claim that: 
+
+$$[Pr(X=2) + Pr(X=3) + \dots] \approx 0$$
+
+So $Pr(X=1) \approx Pr(X\geq1)$ for each 10-pull. 
+
+If we regard each 10-pull as one trial, we can observe that trials are still i.i.d. Bernoulli. However, since the probablity of obtaining 1 SSR card is a lot larger (e.g. 0.132 in our calculation for F/GO) compared to the probability of obtaining 1 SSR in any single pull (e.g. 0.001 in F/GO), modeling probabilities with Poisson Distribution might not be appropriate anymore. Instead, we will use the binomial distribution: 
+
+$$ f(k,n,p) = Pr(k; n,p)=Pr(X=k) = {n \choose k}p^k(1-p)^{n-k} = \frac{n!}{k!(n-k!)}p^k(1-p)^{n-k}$$
+
+### Application in F/GO: 
+
+Similar to our example in [single pulls](gacha.html), we plotted the probabilities of obtaining 1, 2, and 3 SSR cards in 1 to 500 pulls. Here we used the Fate/Grand Order Saint Quartz Summon Distribution Rate on an non-event banner. We define "success" as pulling a 5-star servant (character), and the probability is 1.000% (according to in-game statistics provided). Detailed probabilities are listed in the "Application in F/GO" section in "Probability of 1+ SSR in one 10-pull" section. 
+
+As we stated earlier, we will regard each 10-pull as one trial, therefore we will be looking at 50 trials (500 pulls) so our results here can be compared to our results in the single pulls example. 
+
+```{r}
+p = 0.132 # calculated rate for a 5* servant (character) in a 10-pull with bonus
+n = seq(1,50)
+k = c(1,2,3)
+
+p.binom = dbinom(1, size = n, prob = p)
+plot(n, p.binom, type = 'l', main = "Probability of obtaining k SSR cards through 10-pulls", 
+     xlab = "Number of 10-pulls (n)", ylab = "Probability",
+     ylim = c(0,0.45))
+(paste("Number of 10-pulls that maximizes probability of", 1, "SSR is", which.max(p.binom)))
+
+for(q in c(2,3)){
+  p.binom = dbinom(q, size = n, prob = p)
+  print(paste("Number of 10-pulls that maximizes probability of", q, "SSR is", which.max(p.binom)))
+  lines(n, p.binom, col = q)
+}
+legend('topright', legend=c('k = 1', 'k = 2', 'k = 3'), col = c('black', 2, 3), lty = 1)
+
+```
+
+
+
 ## Remark 
 
-Is there a good way to visualize this? Like the pdf in [single-pulls](gacha.html)? 
-
+Surprisingly, if the player takes full advantage of the 10-pull bonus, you are most likely able to pull one SSR character in F/GO within 7 10-pulls (70 pulls in total) instead of 100 pulls if we were to only do single-pulls. So it is indeed advantageous to save up for the 10-pull bonuses, and by doing so you actually do not have to spend as much in-game currency in order to maximize your chances. 
