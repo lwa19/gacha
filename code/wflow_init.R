@@ -15,7 +15,7 @@ wflow_use_github("lwa19") # how come I always forget this useful function.
 wflow_open('analysis/bonus.Rmd')
 wflow_publish("analysis/index.Rmd", "intro")
 wflow_publish(c("analysis/index.Rmd", "analysis/gacha.Rmd", "analysis/bonus.Rmd"), 
-              "10-pull bonus (WIP)")
+              "finished 10-pull bonus")
 
 ## scratch work:
 
