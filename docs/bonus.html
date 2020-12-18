@@ -504,16 +504,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreec90faa1898872b2324939454fbd7fe48d9852ffetargetblankc90faa1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/c90faa1898872b2324939454fbd7fe48d9852ffe" target="_blank">c90faa1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree985204e2f1490dd168fd0f222e07ce37f5cdd6eatargetblank985204ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/985204e2f1490dd168fd0f222e07ce37f5cdd6ea" target="_blank">985204e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreec90faa1898872b2324939454fbd7fe48d9852ffetargetblankc90faa1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree985204e2f1490dd168fd0f222e07ce37f5cdd6eatargetblank985204ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/c90faa1898872b2324939454fbd7fe48d9852ffe" target="_blank">c90faa1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/985204e2f1490dd168fd0f222e07ce37f5cdd6ea" target="_blank">985204e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -525,6 +525,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    gacha/.RData
     Ignored:    gacha/.Rhistory
+
+Untracked files:
+    Untracked:  analysis/pity.Rmd
 
 Unstaged changes:
     Modified:   code/wflow_init.R
@@ -566,6 +569,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/gacha/blob/985204e2f1490dd168fd0f222e07ce37f5cdd6ea/analysis/bonus.Rmd" target="_blank">985204e</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-17
+</td>
+<td>
+appended 10-pull bonus
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/gacha/2357df5a42009cf6d7f7880ba249b167875c928a/docs/bonus.html" target="_blank">2357df5</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -678,11 +715,78 @@ Lijia Wang
 <pre><code>[1] &quot;Number of 10-pulls that maximizes probability of 2 SSR is 15&quot;
 [1] &quot;Number of 10-pulls that maximizes probability of 3 SSR is 22&quot;</code></pre>
 <p><img src="figure/bonus.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/lwa19/gacha/blob/2357df5a42009cf6d7f7880ba249b167875c928a/docs/figure/bonus.Rmd/unnamed-chunk-1-1.png" target="_blank">2357df5</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-17
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="remark" class="section level2">
-<h2>Remark</h2>
-<p>Surprisingly, if the player takes full advantage of the 10-pull bonus, you are most likely able to pull one SSR character in F/GO within 7 10-pulls (70 pulls in total) instead of 100 pulls if we were to only do single-pulls. So it is indeed advantageous to save up for the 10-pull bonuses, and by doing so you actually do not have to spend as much in-game currency in order to maximize your chances.</p>
+</div>
+</div>
+<div id="trials-to-first-success" class="section level2">
+<h2>Trials to first Success</h2>
+<p>We know that our probability of pulling 1 character is maximized at 7 10-pulls, but that information itself is not all that useful. We will use the cumulative distribution function to explore at what point we will obtain a 95% chance of pulling an SSR character through 10-pulls only.</p>
+<p>Each 10-pull is a Bernoulli Variable <span class="math inline">\(X_i\)</span> and are independentally and identically distributed. Therefore, we can apply the geometric distribution and obtain the probability of obtaining the first success at the <span class="math inline">\(k\)</span>-th trial:</p>
+<p><span class="math display">\[ Pr(X=k) = (1-p)^{k-1}p\]</span></p>
+<p>and we have the cumulative distribution function:</p>
+<p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k \]</span></p>
+<p>And we would like to find the number <span class="math inline">\(k\)</span> when <span class="math inline">\(Pr(X\leq k) \geq 0.95\)</span>, which can be easily computed given probability <span class="math inline">\(p\)</span>.</p>
+<div id="application-in-fgo-2" class="section level3">
+<h3>Application in F/GO</h3>
+<p>In the F/GO case, If we would like to achieve 50% chance of getting an SSR:</p>
+<p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.132)^k = 0.50\]</span></p>
+<p><span class="math display">\[ k = \frac{log(0.50)}{log(1-0.132)} = 4.896\]</span></p>
+<p>If we would like to achieve 95% chance of getting an SSR:</p>
+<p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.132)^k = 0.95\]</span></p>
+<p><span class="math display">\[ k = \frac{log(0.05)}{log(1-0.132)} = 21.16\]</span></p>
+<p>And for 99% chance, you would get:</p>
+<p><span class="math display">\[ k = \frac{log(0.01)}{log(1-0.132)} = 32.53\]</span></p>
+<p>This means if you saved up for 33 10-pulls, you are almost guaranteed to obtain an SSR character from the gacha.</p>
+</div>
+<div id="visualization" class="section level3">
+<h3>Visualization</h3>
+<p><img src="figure/bonus.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="comparison-with-single-pulls" class="section level3">
+<h3>Comparison with single-pulls</h3>
+<p><img src="figure/bonus.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="remarks" class="section level2">
+<h2>Remarks</h2>
+<p>To reiterate, the “10-pull bonus” modeled here is under the assumption that for the last pull, the SR and SSR rates are both adjusted to add up to 100% while maintaining their previous ratio. One possible that only SR rate is increased (e.g. to 99% in F/GO) and SSR rate is remains the same for the bonus pull). But in this case, if our player is still interested in only the SSR character, pulling through 10-pull or through single pulls will make no difference – the probability will be the same as pulling through single pulls only.</p>
+<p>We are unsure as if which one of those mechanisms is actually employed by the game. If we are able to collect a large enough gacha pulls data, we might be able to figure out which model the gacha actually follows, but this is beyond the scope of this project.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -705,20 +809,15 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.3.0   workflowr_1.6.2
+[1] workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.3       compiler_3.6.2   pillar_1.4.3     later_1.0.0     
- [5] git2r_0.26.1     tools_3.6.2      digest_0.6.25    evaluate_0.14   
- [9] lifecycle_0.2.0  tibble_3.0.2     gtable_0.3.0     pkgconfig_2.0.3 
-[13] rlang_0.4.5      yaml_2.2.1       xfun_0.12        withr_2.1.2     
-[17] stringr_1.4.0    dplyr_0.8.5      knitr_1.28       fs_1.3.2        
-[21] vctrs_0.2.4      rprojroot_1.3-2  grid_3.6.2       tidyselect_1.0.0
-[25] glue_1.3.2       R6_2.4.1         rmarkdown_2.1    purrr_0.3.3     
-[29] magrittr_1.5     whisker_0.4      backports_1.1.5  scales_1.1.0    
-[33] promises_1.1.0   htmltools_0.4.0  ellipsis_0.3.0   assertthat_0.2.1
-[37] colorspace_1.4-1 httpuv_1.5.2     stringi_1.4.6    munsell_0.5.0   
-[41] crayon_1.3.4    </code></pre>
+ [1] Rcpp_1.0.3      rprojroot_1.3-2 digest_0.6.25   later_1.0.0    
+ [5] R6_2.4.1        backports_1.1.5 git2r_0.26.1    magrittr_1.5   
+ [9] evaluate_0.14   stringi_1.4.6   rlang_0.4.5     fs_1.3.2       
+[13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_3.6.2    
+[17] stringr_1.4.0   glue_1.3.2      httpuv_1.5.2    xfun_0.12      
+[21] yaml_2.2.1      compiler_3.6.2  htmltools_0.4.0 knitr_1.28     </code></pre>
 </div>
 </div>
 

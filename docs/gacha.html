@@ -504,16 +504,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreec90faa1898872b2324939454fbd7fe48d9852ffetargetblankc90faa1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/c90faa1898872b2324939454fbd7fe48d9852ffe" target="_blank">c90faa1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree985204e2f1490dd168fd0f222e07ce37f5cdd6eatargetblank985204ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/985204e2f1490dd168fd0f222e07ce37f5cdd6ea" target="_blank">985204e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreec90faa1898872b2324939454fbd7fe48d9852ffetargetblankc90faa1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree985204e2f1490dd168fd0f222e07ce37f5cdd6eatargetblank985204ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/c90faa1898872b2324939454fbd7fe48d9852ffe" target="_blank">c90faa1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/985204e2f1490dd168fd0f222e07ce37f5cdd6ea" target="_blank">985204e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -525,6 +525,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    gacha/.RData
     Ignored:    gacha/.Rhistory
+
+Untracked files:
+    Untracked:  analysis/pity.Rmd
 
 Unstaged changes:
     Modified:   code/wflow_init.R
@@ -566,6 +569,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/gacha/blob/985204e2f1490dd168fd0f222e07ce37f5cdd6ea/analysis/gacha.Rmd" target="_blank">985204e</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-17
+</td>
+<td>
+appended 10-pull bonus
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/gacha/2357df5a42009cf6d7f7880ba249b167875c928a/docs/gacha.html" target="_blank">2357df5</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -675,9 +712,8 @@ single pulls
 <p><span class="math display">\[ f(k; \lambda) = Pr(X=k) = \frac{\lambda^k}{k!}e^{-\lambda} \]</span></p>
 <p>Since <span class="math inline">\(p\)</span> small, we can approximate <span class="math inline">\(\lambda = np\)</span>. We can subsequently rephrase our question into “in how many trials can we maximize the probability of obtaining exactly 1 SSR card”?</p>
 </div>
-</div>
-<div id="application" class="section level2">
-<h2>Application</h2>
+<div id="application-in-fgo" class="section level3">
+<h3>Application in F/GO</h3>
 <p>We plotted the probabilities of obtaining 1, 2, and 3 SSR cards in 1 to 500 pulls. Here we used the Fate/Grand Order Saint Quartz Summon Distribution Rate on an non-event banner. We define “success” as pulling a 5-star servant (character), and the probability is 1.000% (according to in-game statistics provided).</p>
 <pre><code>[1] &quot;Number of pulls that maximizes probability of 1 SSR is 100&quot;</code></pre>
 <pre><code>[1] &quot;Number of pulls that maximizes probability of 2 SSRs is 200&quot;</code></pre>
@@ -721,9 +757,30 @@ Lijia Wang
 </div>
 </div>
 </div>
-<div id="remarks" class="section level2">
-<h2>Remarks:</h2>
-<p>We can observe that performing single-pulls alone is not very statistically interesting. Although it is fun to see that if you pulled 100 times and still did not get one single SSR card… you’re truly quite unlucky.</p>
+</div>
+<div id="trials-to-first-success" class="section level2">
+<h2>Trials to first Success</h2>
+<p>We know that our probability of pulling 1 character is maximized at 100 single pulls, but that information itself is not all that useful. We will use the cumulative distribution function to explore at what point we will obtain a 95% chance of pulling an SSR character through single pulls only.</p>
+<p>Each pull is a Bernoulli Variable <span class="math inline">\(X_i\)</span> and are independentally and identically distributed. Therefore, we can apply the geometric distribution and obtain the probability of obtaining the first success at the <span class="math inline">\(k\)</span>-th trial:</p>
+<p><span class="math display">\[ Pr(X=k) = (1-p)^{k-1}p\]</span></p>
+<p>and we have the cumulative distribution function:</p>
+<p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k \]</span></p>
+<p>And we would like to find the number <span class="math inline">\(k\)</span> when <span class="math inline">\(Pr(X\leq k) \geq 0.95\)</span>, which can be easily computed given probability <span class="math inline">\(p\)</span>.</p>
+<div id="application-in-fgo-1" class="section level3">
+<h3>Application in F/GO</h3>
+<p>In the F/GO case, If we would like to achieve 50% chance of getting an SSR:</p>
+<p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.01)^k = 0.50\]</span></p>
+<p><span class="math display">\[ k = \frac{log(0.50)}{log(1-0.01)} = 68.96\]</span></p>
+<p>If we would like to achieve 95% chance of getting an SSR:</p>
+<p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.01)^k = 0.95\]</span></p>
+<p><span class="math display">\[ k = \frac{log(0.05)}{log(1-0.001)} = 298.07\]</span></p>
+<p>And for 99% chance, you would get:</p>
+<p><span class="math display">\[ k = \frac{log(0.01)}{log(1-0.01)} = 458.21\]</span></p>
+<p>This means if you saved up for 459 single pulls, you are almost guaranteed to obtain an SSR character from the gacha.</p>
+</div>
+<div id="visualization" class="section level3">
+<h3>Visualization</h3>
+<p><img src="figure/gacha.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -755,6 +812,7 @@ loaded via a namespace (and not attached):
 [13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_3.6.2    
 [17] stringr_1.4.0   glue_1.3.2      httpuv_1.5.2    xfun_0.12      
 [21] yaml_2.2.1      compiler_3.6.2  htmltools_0.4.0 knitr_1.28     </code></pre>
+</div>
 </div>
 </div>
 
