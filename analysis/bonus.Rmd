@@ -9,7 +9,6 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
-library(ggplot2)
 ```
 
 ## Introduction
@@ -114,7 +113,95 @@ legend('topright', legend=c('k = 1', 'k = 2', 'k = 3'), col = c('black', 2, 3), 
 ```
 
 
+## Trials to first Success
 
-## Remark 
+We know that our probability of pulling 1 character is maximized at 7 10-pulls, but that information itself is not all that useful. We will use the cumulative distribution function to explore at what point we will obtain a 95% chance of pulling an SSR character through 10-pulls only. 
 
-Surprisingly, if the player takes full advantage of the 10-pull bonus, you are most likely able to pull one SSR character in F/GO within 7 10-pulls (70 pulls in total) instead of 100 pulls if we were to only do single-pulls. So it is indeed advantageous to save up for the 10-pull bonuses, and by doing so you actually do not have to spend as much in-game currency in order to maximize your chances. 
+Each 10-pull is a Bernoulli Variable $X_i$ and are independentally and identically distributed. Therefore, we can apply the geometric distribution and obtain the probability of obtaining the first success at the $k$-th trial: 
+
+$$ Pr(X=k) = (1-p)^{k-1}p$$
+
+and we have the cumulative distribution function: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k $$
+
+
+
+And we would like to find the number $k$ when $Pr(X\leq k) \geq 0.95$, which can be easily computed given probability $p$. 
+
+### Application in F/GO
+
+In the F/GO case, If we would like to achieve 50% chance of getting an SSR: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.132)^k = 0.50$$
+
+$$ k = \frac{log(0.50)}{log(1-0.132)} = 4.896$$
+
+If we would like to achieve 95% chance of getting an SSR: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.132)^k = 0.95$$
+
+$$ k = \frac{log(0.05)}{log(1-0.132)} = 21.16$$
+
+And for 99% chance, you would get: 
+
+$$ k = \frac{log(0.01)}{log(1-0.132)} = 32.53$$
+
+This means if you saved up for 33 10-pulls, you are almost guaranteed to obtain an SSR character from the gacha. 
+
+### Visualization
+
+```{r}
+p = 0.132 # calculated rate for a 5* servant (character) in a 10-pull with bonus
+n = seq(1,50)
+
+p.geom = pgeom(n, prob = p)
+plot(seq(2, 51), p.geom, type = 'l', main = "Probability of obtaining 1 SSR cards within n 10-pulls", 
+     xlab = "Number of 10-pulls (n)", ylab = "Probability")
+
+abline(h=0.5, col = 2)
+abline(h=0.95, col = 3)
+abline(h=0.99, col = 4)
+
+abline(v = 4.896, col = 2, lty = 2)
+abline(v = 21.16, col = 3, lty = 2)
+abline(v = 32.53, col = 4, lty = 2)
+
+legend('bottomright', legend=c('P = 50%', 'P = 95%', 'P = 99%'), col = c(2, 3, 4), lty = 1)
+```
+
+
+### Comparison with single-pulls
+
+```{r}
+p = 0.132 # calculated rate for a 5* servant (character) in a 10-pull with bonus
+p1 = 0.095
+n = seq(1,50)
+
+p.geom = pgeom(n, prob = p)
+p.geom1 = pgeom(n, prob = p1)
+plot(seq(2, 51), p.geom, type = 'l', main = "Probability of obtaining 1 SSR cards", 
+     xlab = "Sets of 10 pulls (n/10)", ylab = "Probability")
+lines(seq(2,51), p.geom1, col = 6)
+
+abline(h=0.5, col = 2)
+abline(h=0.95, col = 3)
+abline(h=0.99, col = 4)
+
+abline(v = 4.896, col = 2, lty = 2)
+abline(v = 21.16, col = 3, lty = 2)
+abline(v = 32.53, col = 4, lty = 2)
+
+abline(v = 6.89, col = 2, lty = 3)
+abline(v = 29.81, col = 3, lty = 3)
+abline(v = 45.82, col = 4, lty = 3)
+
+legend('bottomright', legend=c('P = 50%', 'P = 95%', 'P = 99%', "with bonus", "without bonus"), col = c(2, 3, 4, 1, 6), lty = 1)
+```
+
+## Remarks
+
+To reiterate, the "10-pull bonus" modeled here is under the assumption that for the last pull, the SR and SSR rates are both adjusted to add up to 100% while maintaining their previous ratio. One possible that only SR rate is increased (e.g. to 99% in F/GO) and SSR rate is remains the same for the bonus pull). But in this case, if our player is still interested in only the SSR character, pulling through 10-pull or through single pulls will make no difference -- the probability will be the same as pulling through single pulls only. 
+
+We are unsure as if which one of those mechanisms is actually employed by the game. If we are able to collect a large enough gacha pulls data, we might be able to figure out which model the gacha actually follows, but this is beyond the scope of this project. 
+

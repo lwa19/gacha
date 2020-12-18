@@ -11,7 +11,7 @@ editor_options:
 
 ## Motivation
 
-Say you're me and instead of doing anything useful in life, you are playing gacha games. However, you're a broke and sad college student, so instead of paying for extra in-game currency like the game companies expect you to do during your favorite character's banner, you have to work hard to save up for them. A natural question that follows is that, how many in game currency do you need to save up? 
+Say you're me and instead of doing anything useful in life, you are playing gacha games. However, you're a broke and sad college student, so instead of paying for extra in-game currency like the game companies expect you to do during your favorite character's banner, you have to work hard to save up for them. A natural question that follows is that, how much in game currency do you need to save up? 
 
 In other words, I forgot everything in probabilities so I'd like to review. But why not do it in a fun way. 
 
@@ -22,7 +22,7 @@ With the increased spread of smartphones in worldwide, purchasing and downloadin
 
 The problem around gacha games is that the uncertainty of the pull result draws the players to spend more money to purchase more pulls, until a desired card is drawn. This frequently results in large amounts of money being spent on gacha games. In 2012, one such type of gacha games, the Complete Gacha, was banned by the Japanese Consumer Affairs Agency [@akimoto2014japan]. The Complete Gacha is set up such that players need to obtain all items in the lottery (we will refer to it as "gacha" in this study) to obtain an item of higher rarity. The Complete Gacha is an example of the ["Coupon collector's problem"](https://en.wikipedia.org/wiki/Coupon_collector%27s_problem). The expected number of trials (pulls) needed to complete the set grows as $\Theta(nlog(n))$, with n being the number in the set of cards in the gacha. 
 
-In this project, I would like to model the distinct gacha system employed by a few popular mobile games, with specific calculations for some games according to their published probability data. I hope to calculate the expected number of trials to obtain the desired character under each system and the variance of the estimation.
+In this project, I would like to model the distinct gacha system employed by a few popular mobile games, with specific calculations for some games according to their published probability data. I hope to calculate the number of trials that would achieve a 95% probability of pulling an SSR character. 
 
 Lastly, I would like to note that even though each game company has published probabilities for each card tier, we do not know the exact algorithm behind each gacha system and the accuracy of that information. The model built will be a simplification a generic gacha algorithm and therefore will probably not be exactly representative of the gacha in specific games. Another drawback of our model is that we cannot model the specific "character" in the card outcome. We can only estimate the expected number of trials needed to obtain a card of a certain rarity. 
 
@@ -40,6 +40,8 @@ The majority of the gacha games employ one or more aspects of these gacha mechan
 - [Single pulls](gacha.html)
 
 - [10-pull bonus](bonus.html)
+
+- [pity mechanism](pity.html)
 
 ## Case Studies: 
 

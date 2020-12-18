@@ -33,7 +33,7 @@ $$ f(k; \lambda) = Pr(X=k) = \frac{\lambda^k}{k!}e^{-\lambda} $$
 
 Since $p$ small, we can approximate $\lambda = np$. We can subsequently rephrase our question into "in how many trials can we maximize the probability of obtaining exactly 1 SSR card"? 
 
-## Application
+### Application in F/GO
 
 We plotted the probabilities of obtaining 1, 2, and 3 SSR cards in 1 to 500 pulls. Here we used the Fate/Grand Order Saint Quartz Summon Distribution Rate on an non-event banner. We define "success" as pulling a 5-star servant (character), and the probability is 1.000% (according to in-game statistics provided). 
 
@@ -55,7 +55,58 @@ lines(n, p.3, col = 4)
 legend('topright', legend=c('k = 1', 'k = 2', 'k = 3'), col = c('black', 2, 4), lty = 1)
 ```
 
+## Trials to first Success
 
-## Remarks: 
+We know that our probability of pulling 1 character is maximized at 100 single pulls, but that information itself is not all that useful. We will use the cumulative distribution function to explore at what point we will obtain a 95% chance of pulling an SSR character through single pulls only. 
 
-We can observe that performing single-pulls alone is not very statistically interesting. Although it is fun to see that if you pulled 100 times and still did not get one single SSR card... you're truly quite unlucky. 
+Each pull is a Bernoulli Variable $X_i$ and are independentally and identically distributed. Therefore, we can apply the geometric distribution and obtain the probability of obtaining the first success at the $k$-th trial: 
+
+$$ Pr(X=k) = (1-p)^{k-1}p$$
+
+and we have the cumulative distribution function: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k $$
+
+And we would like to find the number $k$ when $Pr(X\leq k) \geq 0.95$, which can be easily computed given probability $p$. 
+
+### Application in F/GO
+
+In the F/GO case, If we would like to achieve 50% chance of getting an SSR: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.01)^k = 0.50$$
+
+$$ k = \frac{log(0.50)}{log(1-0.01)} = 68.96$$
+
+If we would like to achieve 95% chance of getting an SSR: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.01)^k = 0.95$$
+
+$$ k = \frac{log(0.05)}{log(1-0.001)} = 298.07$$
+
+And for 99% chance, you would get: 
+
+$$ k = \frac{log(0.01)}{log(1-0.01)} = 458.21$$
+
+This means if you saved up for 459 single pulls, you are almost guaranteed to obtain an SSR character from the gacha. 
+
+### Visualization
+
+```{r}
+p = 0.01 # calculated rate for a 5* servant (character) in a 10-pull with bonus
+n = seq(1,500)
+
+p.geom = pgeom(n, prob = p)
+plot(seq(2, 501), p.geom, type = 'l', main = "Probability of obtaining 1 SSR cards within n single pulls", 
+     xlab = "Number of single pulls (n)", ylab = "Probability")
+
+abline(h=0.5, col = 2)
+abline(h=0.95, col = 3)
+abline(h=0.99, col = 4)
+
+abline(v = 68.96, col = 2, lty = 2)
+abline(v = 298.07, col = 3, lty = 2)
+abline(v = 458.21, col = 4, lty = 2)
+
+legend('bottomright', legend=c('P = 50%', 'P = 95%', 'P = 99%'), col = c(2, 3, 4), lty = 1)
+```
+
