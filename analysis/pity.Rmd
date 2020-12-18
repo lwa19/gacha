@@ -1,0 +1,19 @@
+---
+title: "pity"
+author: "Lijia Wang"
+date: "2020-12-17"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+The "pity mechanism" is introduced rather recently as a method to encourage players by guaranteeing them that if they perform enough pulls, they are guaranteed to obtain a card of top rarity. The mechanism is employed in the following way: in the first $n$ pulls, each pull is an i.i.d. Bernoulli trial with the default probabilities (we shall refer to them as *base probabilities*). After the *n*-th pull, in each subsequent pull, the probability of pulling a card of top rarity (SSR) will receive a small increment until you pull a card of top rarity, after which the probability returns to base probabilities and the counter resets. 
+
+This mechanism is intended to guarantee the players that they can receive an SSR card as long as they make enough pulls. Typically, the player pulls an SSR card before the "pity probability" increases to 100%. We would like to explore at which point the pity mechanism maximizes the probability of obtaining 1 SSR character. 
+
+```{r}
+
+```
+
