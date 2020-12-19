@@ -364,16 +364,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree4f264cacd73f57c3b26743df315029a75ee2396ftargetblank4f264caa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/4f264cacd73f57c3b26743df315029a75ee2396f" target="_blank">4f264ca</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree5f646a0783aa38c63e392c50d27b6fab08c89659targetblank5f646a0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/5f646a0783aa38c63e392c50d27b6fab08c89659" target="_blank">5f646a0</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree4f264cacd73f57c3b26743df315029a75ee2396ftargetblank4f264caa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree5f646a0783aa38c63e392c50d27b6fab08c89659targetblank5f646a0a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/4f264cacd73f57c3b26743df315029a75ee2396f" target="_blank">4f264ca</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/5f646a0783aa38c63e392c50d27b6fab08c89659" target="_blank">5f646a0</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -427,6 +427,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/gacha/blob/5f646a0783aa38c63e392c50d27b6fab08c89659/analysis/index.Rmd" target="_blank">5f646a0</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-18
+</td>
+<td>
+case studies AFTER thesis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/gacha/9f25d18bd8e66ab9f9a4e188bab526f1481da84f/docs/index.html" target="_blank">9f25d18</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -640,35 +674,38 @@ First commit
 </div>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
-<p>Say you’re me and instead of doing anything useful in life, you are playing gacha games. However, you’re a broke and sad college student, so instead of paying for extra in-game currency like the game companies expect you to do during your favorite character’s banner, you have to work hard to save up for them. A natural question that follows is that, how much in game currency do you need to save up?</p>
+<p>Say you’re me and instead of doing anything useful in life, you are playing gacha games. However, you’re a broke and sad college student, so instead of paying for extra in-game currency like the game companies expect you to do, especially during your favorite character’s rate-up banner, you have to work hard to save up for them. A natural question that follows is that, how much in game currency do you need to save up?</p>
 <p>In other words, I forgot everything in probabilities so I’d like to review. But why not do it in a fun way.</p>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>With the increased spread of smartphones in worldwide, purchasing and downloading apps is starting to take up a large portion of market surrounding mobile devices. Gameing applications, in particular, makes up for nearly half of the downloads for smartphone apps <span class="citation">(Hiramatsu 2019)</span>. In our project, we are focusing on a new type of mobile game that can be played free of charge, but offer additional paid content such as advantageous items or extra number of plays <span class="citation">(Hiramatsu 2019)</span>. One such type of games, generally named “gacha games”, employs a lottery-like system, where player can spend in-game currency in exchange for “rolls” in the “gacha”, a parallel to “tickets” in a raffle or lottery. The “rewards” in the gacha are cards of tiered-rarity. The most generic gacha rewards system have characters from 1-star (Normal rarity) to 5-star (Super Super Rare, or SSR, rarity). For each pull, the player has a set probability of pulling a card of each rarity, and this probability decreases with increased rarity (star count) of the card.</p>
-<p>The problem around gacha games is that the uncertainty of the pull result draws the players to spend more money to purchase more pulls, until a desired card is drawn. This frequently results in large amounts of money being spent on gacha games. In 2012, one such type of gacha games, the Complete Gacha, was banned by the Japanese Consumer Affairs Agency <span class="citation">(Akimoto 2014)</span>. The Complete Gacha is set up such that players need to obtain all items in the lottery (we will refer to it as “gacha” in this study) to obtain an item of higher rarity. The Complete Gacha is an example of the <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem">“Coupon collector’s problem”</a>. The expected number of trials (pulls) needed to complete the set grows as <span class="math inline">\(\Theta(nlog(n))\)</span>, with n being the number in the set of cards in the gacha.</p>
-<p>In this project, I would like to model the distinct gacha system employed by a few popular mobile games, with specific calculations for some games according to their published probability data. I hope to calculate the number of trials that would achieve a 95% probability of pulling an SSR character.</p>
-<p>Lastly, I would like to note that even though each game company has published probabilities for each card tier, we do not know the exact algorithm behind each gacha system and the accuracy of that information. The model built will be a simplification a generic gacha algorithm and therefore will probably not be exactly representative of the gacha in specific games. Another drawback of our model is that we cannot model the specific “character” in the card outcome. We can only estimate the expected number of trials needed to obtain a card of a certain rarity.</p>
+<p>With the increased spread of smartphones in worldwide, purchasing and downloading apps is starting to take up a large portion of market surrounding mobile devices. Gameing applications, in particular, makes up for nearly half of the downloads for smartphone apps <span class="citation">(Hiramatsu 2019)</span>. In our project, we are focusing on a recent type of mobile game that can be played free of charge, but offer additional paid content such as advantageous items or extra number of plays <span class="citation">(Hiramatsu 2019)</span>. One such type of games, generally named “gacha games”, employs a lottery-like system, where player can spend in-game currency in exchange for “pulls” in the “gacha”, a parallel to “tickets” in a raffle or lottery. The “rewards” in the gacha are cards of tiered-rarity. The most generic gacha rewards system have characters from 1-star (Normal rarity) to 5-star (Super Super Rare, or SSR, rarity). For each pull, the player has a set probability of pulling a card of each rarity, and this probability decreases with increased rarity (star count) of the card.</p>
+<p>The problem around gacha games that has drawn a lot of attention is that the uncertainty of the pull result draws the players to spend more money to purchase more pulls, until a desired card is drawn. This frequently results in large amounts of money being spent on gacha games. In fact, one such type of gacha games, the Complete Gacha, was banned by the Japanese Consumer Affairs Agency in 2012 <span class="citation">(Akimoto 2014)</span>. The Complete Gacha is set up such that players need to obtain all items in the lottery (we will refer to it as “gacha” in this study) to obtain an item of higher rarity. The Complete Gacha is an example of the <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem">“Coupon collector’s problem”</a>. The expected number of trials (pulls) needed to complete the set grows as <span class="math inline">\(\Theta(nlog(n))\)</span>, with n being the number in the set of cards in the gacha. This resulted in excessive spending among a large number of players. In this project, I would like to model a few gacha system employed by popular mobile games, with specific calculations for some games according to their published probability data. My goal is to calculate the number of trials that would achieve a 95% probability of pulling an SSR character under each distinct gacha mechanism.</p>
+<p>Lastly, I would like to note that even though each game company has published probabilities for each card tier, we do not know the exact algorithm behind each gacha system and the accuracy of these published statistics. The models built is a simple and generic representation of the gacha algorithm and therefore are not exactly representative of some gacha in specific games. Another drawback of our model is that we are not modeling the probability of obtaining a specific card in the card outcome. We are only estimating the number of trials needed to obtain a card of a certain rarity.</p>
 </div>
 <div id="types-of-gacha-mechanisms" class="section level2">
 <h2>Types of Gacha Mechanisms</h2>
-<p>The most common type of Gacha in popular mobile games typically have two different items in the gacha pool: equipment and character. While both equipment and character categories have tiered rarity, the probability to pull any specific equipment tend to be higher than the probability to pull a character of the same category. We will approach the analysis of this feature by modeling a simple gacha with only character or equipment categories, and then add the other category to see how it changes our model.</p>
-<p>Gacha algorithm is further complicated by the “10-pull bonus”. When making individual pulls, the probability of pulling each character will be as stated in the gacha rules; when making a large number of pulls (e.g. 10-pull), some gacha games will offer some sort of bonus: one extra free pull, a guaranteed character card, or a guaranteed card above a certain rarity (4 star+). On top of this “10-pull bonus”, some gacha systems also have a “pity mechanism”, where for each pull you made after a certain pulls, the probability of obtaining a character of top rarity (5 star or SSR) will increase linearly with the number of pulls attempted, therefore guaranteeing a character of top rarity after a certain number of pulls.</p>
-<p>The majority of the gacha games employ one or more aspects of these gacha mechanisms mentioned. Therefore, we will conduct three case studies on popular gacha games at the moment: <a href="https://fate-go.us/">Fate/Grand Order</a> (North America server), <a href="https://www.arknights.global/">Arknights</a> (Global mobile server), and <a href="https://genshin.mihoyo.com/en">Genshin Impact</a> (North America mobile server).</p>
+<p>The most common type of gacha in popular mobile games typically have two different items in the gacha pool: equipment and character. While both equipment and character categories have tiered rarity, the probability to pull any specific equipment tend to be higher than the probability to pull a character in the same rarity tier. We will approach the analysis of this feature by modeling a simple gacha with only character or equipment categories. However, I will try to account for the other category in certain case studies.</p>
+<p>Gacha algorithm is further complicated by the “10-pull bonus”. When making individual pulls, the probability of pulling each character will be as stated in the gacha rules; when making a large number of pulls (e.g. 10-pull), some gacha games will offer some sort of bonus: one extra free pull, a guaranteed character card, or a guaranteed card above a certain rarity (4 star+). On top of this “10-pull bonus”, some gacha systems also have a “pity mechanism”, where for each pull after having made certain number of pulls, the probability of obtaining a character of top rarity (SSR) will increase linearly with the number of pulls attempted, therefore guaranteeing a character of top rarity after a certain number of pulls.</p>
+<p>The majority of the gacha games employ one or more aspects of these gacha mechanisms mentioned. Therefore, we will conduct three case studies on popular gacha games at the moment: <a href="https://fate-go.us/">Fate/Grand Order</a> (stats obtained from the North America server), <a href="https://www.arknights.global/">Arknights</a> (stats obtained from Global mobile server), and <a href="https://genshin.mihoyo.com/en">Genshin Impact</a> (stats obtained from North America mobile server).</p>
 </div>
 <div id="methods" class="section level2">
 <h2>Methods:</h2>
 <ul>
-<li><p><a href="gacha.html">Single pulls</a></p></li>
-<li><p><a href="bonus.html">10-pull bonus</a></p></li>
-<li><p><a href="pity.html">pity mechanism</a></p></li>
+<li><p><a href="gacha.html">Single pulls, with examples from F/GO</a></p></li>
+<li><p><a href="bonus.html">10-pull bonus, with examples from F/GO</a></p></li>
+<li><p><a href="pity.html">pity mechanism, with examples from Arknights</a></p></li>
 </ul>
 </div>
-<div id="case-studies" class="section level2">
-<h2>Case Studies:</h2>
+<div id="case-studies-coming-soon-maybe" class="section level2">
+<h2>Case Studies (coming soon… Maybe):</h2>
 <p>Fate/Grand Order: “10-pull bonus” only; characters and equipment in gacha</p>
 <p>Arknights: “10-pull bonus” and “pity mechanism”; only character cards in gacha</p>
 <p>Genshin Impact: “10-pull bonus” and “pity mechanism”; character and equipment in gacha</p>
+</div>
+<div id="additional-comments" class="section level2">
+<h2>Additional Comments:</h2>
+<p>I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus probability distribution), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu.</p>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>
