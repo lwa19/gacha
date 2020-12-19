@@ -88,7 +88,7 @@ Probability of first succcess: $S_t = F_{n-1}p_n = F_{n-1}(p+n\delta)$
 
 The cumulative probability can be calculated as: 
 
-$$Pr(n\leq k) = 1-F_{n-1}F_n$$
+$$Pr(n\leq k) = 1-F_{k-1}F_k$$
 
 At a first glance, it seems that it is difficult to find an analytical solution for this problem, but we can still visualize the results and graph the cumulative probability function. Note that at the 99th pull, the probability of pulling an SSR card increases to 100%, after which the gacha resets to base probabilities. 
 
