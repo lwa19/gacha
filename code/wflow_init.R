@@ -13,7 +13,7 @@ wflow_use_github("lwa19") # how come I always forget this useful function.
 
 # New pages: 
 wflow_open('analysis/pity.Rmd')
-wflow_publish("analysis/pity.Rmd", "started pity file")
+wflow_publish("analysis/pity.Rmd", "fixed equations")
 wflow_publish(c("analysis/index.Rmd", "analysis/gacha.Rmd", "analysis/bonus.Rmd", 
                 "analysis/pity.Rmd"), 
               "case studies AFTER thesis")
