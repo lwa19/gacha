@@ -21,7 +21,7 @@ This mechanism is intended to guarantee the players that they can receive an SSR
 
 The tricky part about pity mechanism is that pulls (trials, $X_i$) are i.i.d. Bernoulli up to a certain point ($X_N$), after which the SSR probability increases linearly with the number of trials attempted. Let's assume the threshold number of pulls before pity mechanism take effect is $N$. We will divide the probability up into two segments: 
 
-A: No SSR cards are pulled on the $i = 1, 2, \dots, N$ trials before the pity mechanism takes effect. For these $N$ trials, the probability of pulling an SSR card is $p$, and the probability of pulling any other card is $1-p$. 
+A: No SSR cards are pulled on the $i = 1, 2, \dots, N$ trials before the pity mechanism takes effect. For these $N$ trials, the probability of pulling an SSR card is $p$, and the probability of pulling any other card is $q = 1-p$. 
 
 B: For all the subsequent pulls, $i = N+1, N+2, \dots, k$, with each pull the probability of pulling an SSR increases with increment $\delta$. This increase in probability is similar the idea of sampling without replacement, and the idea of "probability distribution for draws until first success without replacement" have also been explored before[@ahlgren2014probability]. However, in this case the probability of drawing the next success, termed as $\frac{K}{N-n+1}$ at the $n$-th trial increases in a non-linear fashion. We would like to construct a model such that the probability of success increases linearly.
 
@@ -65,32 +65,34 @@ Pull #1:
 
 Probablity of first success: $S_1 = p_1 =  p + \delta$
 
-Probablity of failure: $F_1 = 1-S_1 = 1-p_1 = 1-(p+\delta)$
+Probablity of failure: $F_1 = q_1 = 1-S_1 = 1-p_1 = 1-(p+\delta)$
 
 
 Pull #2: 
 
 Probablity of first success: $S_2 = F_1p_2 = (1-(p+\delta))(p+2\delta)$
 
-Probablity of failure: $F_2 = 1-S_2 = 1- F_1p_2 = 1-(1-(p+\delta))(p+2\delta)$
+Probablity of failure up to this pull: $F_2  = F_1q_2 = (1-(p+\delta))(1-(p+2\delta))$
 
 Pull #3: 
 
-Probablity of first success: $S_3 = F_1F_2p_3 = [1-(p+\delta)][1-(1-(p+\delta))(p+2\delta)](p+3\delta)$
+Probablity of first success: $S_3 = F_2p_3 = (1-(p+\delta))(1-(p+2\delta))(p+3\delta)$
 
-Probablity of failure: $F_3 = 1-S_3 = 1-F_1F_2p_3 =  1-[1-(p+\delta)][1-(1-(p+\delta))(p+2\delta)](p+3\delta)$
+Probablity of failure up to this pull: $F_3 = F_2q_3 = (1-(p+\delta))(1-(p+2\delta))(1-(p+3\delta))$
 
 $$\dots$$
 
 Pull #n: 
 
-Probability of first succcess: $S_t = F_1F_2F_3 \dots F_{n-1}p_n = F_1F_2F_3 \dots F_{n-1}(p+n\delta)$
+Probability of first succcess: $S_t = F_{n-1}p_n = F_{n-1}(p+n\delta)$
 
 The cumulative probability can be calculated as: 
 
-$$Pr(n\leq k) = 1-F_1\cdot F_2 \cdot F_3 \cdot \dots \cdot F_n$$
+$$Pr(n\leq k) = 1-F_{n-1}F_n$$
 
-From a first glance an analytical solution seems difficult to find for this problem, but we can still visualize the results and find out the numerical values at cumulative probability at 50%, 95%, and 99%. Note that at the 99th pull, the probability of pulling an SSR card increases to 100%, after which the gacha resets to base probabilities. 
+At a first glance, it seems that it is difficult to find an analytical solution for this problem, but we can still visualize the results and graph the cumulative probability function. Note that at the 99th pull, the probability of pulling an SSR card increases to 100%, after which the gacha resets to base probabilities. 
+
+## Calculations for Arknights
 
 ```{r}
 # Arknights parameters
@@ -170,5 +172,5 @@ legend('bottomright', legend=c('with pity', 'without pity', 'P = 50%',
        col = c(1, 5, 2, 3, 4), lty = 1)
 ```
 
-We can easily observe that without the pity mechanism, players will not be able to reach 95% probability of pulling an SSR card within 99 pulls. 
+Results demonstrate once again that without the pity mechanism, players will not be able to reach 95% probability of pulling an SSR card within 99 pulls. 
 
