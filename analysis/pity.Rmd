@@ -11,9 +11,82 @@ editor_options:
 
 The "pity mechanism" is introduced rather recently as a method to encourage players by guaranteeing them that if they perform enough pulls, they are guaranteed to obtain a card of top rarity. The mechanism is employed in the following way: in the first $n$ pulls, each pull is an i.i.d. Bernoulli trial with the default probabilities (we shall refer to them as *base probabilities*). After the *n*-th pull, in each subsequent pull, the probability of pulling a card of top rarity (SSR) will receive a small increment until you pull a card of top rarity, after which the probability returns to base probabilities and the counter resets. 
 
-This mechanism is intended to guarantee the players that they can receive an SSR card as long as they make enough pulls. Typically, the player pulls an SSR card before the "pity probability" increases to 100%. We would like to explore at which point the pity mechanism maximizes the probability of obtaining 1 SSR character. 
+This mechanism is intended to guarantee the players that they can receive an SSR card as long as they make enough pulls. Typically, the player pulls an SSR card before the "pity probability" increases to 100%. We would like to explore at what point we can actually reach a 95% chance of obtaining an SSR item. 
+
+## Model: 
+
+The tricky part about pity mechanism is that pulls (trials, $X_i$) are i.i.d. Bernoulli up to a certain point, after which the probability increases linearly with the number of trials attempted. Let's assume the threshold number of pulls before pity mechanism take effect is $N$. We will divide the probability up into: 
+
+A: No SSR cards are pulled on the $i = 1, 2, \dots, N$ trials before the pity mechanism takes effect. For these $N$ trials, the probability of pulling an SSR card is $p$, and the probability of pulling any other card is $q = 1-p$. 
+
+B: For all the subsequent pulls, $i = N+1, N+2, \dots, k$, with each pull the probability of pulling an SSR increases with increment $\delta$. This increasing in probability is similar the idea of sampling without replacement, and the idea of "probability distribution for draws until first success without replacement" have also been explored before[@ahlgren2014probability]. However, in this case the probability of drawing the next success, termed as $\frac{K}{N-n+1}$ at the $n$-th trial increases in a non-linear fashion. We would like to construct a model such that the probability of success increases linearly.
+
+In the following analysis, we will use the probabilities of SSR cards from Arknights as an example, instead of F/GO or Genshin Impact. The benefit of using Arknights as our example is that 1) they have clear documentation of rate of increase for their pity mechanism, instead of observations and deductions made by players on reddit, and 2) they only have characters in their gacha, and not equipments. Arknights non-event gacha (on banners after the first 10 pulls) is constructed as follows:
+
+*The probability of pulling any SSR (6-star Operator)*: 2%
+
+*pity mechanism*: If a 6-star Operator was not obtained after 50 pulls, the probability of pulling any 6-star Operator will increase to 4% in the 51st pull. If the 51st pull is still not a 6-star Operator, then the probability of pulling a 6-star Operator will increase to 6% in the 52nd pull, and the probability will keep increasing by 2% until it reaches 100%. This indicates that if the first 98 pulls (after the last 6-star Operator was pulled) did not yield a 6-star Operator, then a 6-star Operator is guaranteed to be drawn on the 99th pull (probability increases to 100%)
+
+### Part A
+
+Probability in part A depicts the scenario before the pity mechanism has taken effect, so when trial number $i \leq N$. In this scenario, the probabilty of first successful SSR draw after $k$ trials is the same as that in [single pulls](gacha.html). 
+
+Therefore, we can continue to use the Geometric distribution model with $p=0.02$: 
+
+$$ Pr(X=k) = (1-p)^{k-1}p$$
+
+and we have the cumulative distribution function: 
+
+$$ Pr(X\leq k) = 1-(1-p)^k $$
+
+And we can easily get the probability of obtaining at least 1 SSR within 50 pulls: 
+
+$$ Pr(X\leq 50) = 1-(1-0.02)^{50} = 0.636 $$
+
+This shows that we have more than 60% chance of pulling our first SSR card within 50 pulls, without the aid of the pity mechanism. And the probability of not pulling any SSR cards in those 50 pulls is 
+
+$$ Pr(X > 50) = (1-0.02)^{50} = 0.364 $$
+
+If there is no pity mechanism in this gacha, the number of trials to achieve a 95% probability of getting one SSR is about 148 pulls. 
+
+$$ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.02)^k = 0.95$$
+
+$$ k = \frac{log(0.05)}{log(1-0.02)} = 148.28$$
+
+### Part B
+
+In part B, we focus only on the trials that took place AFTER the pity mechanisms is starting to take an effect. We will write the probability of obtaining the first SSR at each pull as $S_i$, the probability of obtaining only failure up to this pull as $F_i$, and the probability of SSR at that specific pull as $p_i$, and the pity increment as $\delta$. 
+
+Pull #1: 
+
+Probablity of first success: $S_1 = p_1 =  p + \delta$
+
+Probablity of failure: $F_1 = 1-S_1 = 1-p_1 = 1-(p+\delta)$
+
+
+Pull #2: 
+
+Probablity of first success: $S_2 = F_1p_2 = (1-(p+\delta))(p+2\delta)$
+
+Probablity of failure: $F_2 = 1-S_2 = 1- F_1p_2 = 1-(1-(p+\delta))(p+2\delta)$
+
+Pull #3: 
+
+Probablity of first success: $S_3 = F_1F_2p_3 = [1-(p+\delta)][1-(1-(p+\delta))(p+2\delta)](p+3\delta)$
+
+Probablity of failure: $F_3 = 1-S_3 = 1-F_1F_2p_3 =  1-[1-(p+\delta)][1-(1-(p+\delta))(p+2\delta)](p+3\delta)$
+
+$$\dots$$
+
+Pull #n: 
+
+Probability of first succcess: $S_t = F_1F_2F_3 \dots F_{n-1}p_n = F_1F_2F_3 \dots F_{n-1}(p+n\delta)$
+
+From a first glance an analytical solution seems difficult to find for this problem, but we can still visualize the results. 
+
 
 ```{r}
-
+pi = c(rep(0.02, 49), seq(0.02, to = 1, by = 0.02))
+# fi = 
 ```
 
