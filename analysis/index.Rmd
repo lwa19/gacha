@@ -51,7 +51,7 @@ Genshin Impact: "10-pull bonus" and "pity mechanism"; character and equipment in
 
 ## Additional Comments: 
 
-I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus probability distribution), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu. 
+I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu. 
 
 ## References
 
