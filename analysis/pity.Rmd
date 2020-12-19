@@ -7,10 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
-```
-
 ## Introduction
 
 The "pity mechanism" is introduced rather recently as a method to encourage players by guaranteeing them that if they perform enough pulls, they are guaranteed to obtain a card of top rarity. The mechanism is employed in the following way: in the first $N$ pulls, each pull is an i.i.d. Bernoulli trial with the default probabilities (we shall refer to them as *base probabilities*). After the *N*-th pull, in each subsequent pull, the probability of pulling a card of top rarity (SSR) will receive a small increment ($\delta$) until you pull a card of top rarity, after which the probability returns to base probabilities and the pull counter resets. 
