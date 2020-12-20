@@ -1,0 +1,41 @@
+---
+title: "genshin"
+author: "Lijia Wang"
+date: "2020-12-19"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Now that the Zhongli banner is almost over, I'm sure a lot of you are saving up those precious primogems for our next white (silver?) haired twink Albedo. In this investigation we look for the number of pulls needed to achieve 95% probability of pulling one SSR character using the Genshin Impact.
+
+## Model Assumptions
+
+I would like to state that we are very unsure about how the Genshin Impact (referred to as "Genshin") algorithm actually works. Unlike Arknights, the gacha statistics given in the game offers very little insights on *when* the pity mechanism kicks in, and the size of the increment in probability. However, an [empirical study on reddit](https://www.reddit.com/r/Genshin_Impact/comments/jo9d9d/the_5_rate_is_not_uniform_06_there_is_a_soft_pity/?utm_source=share&utm_medium=ios_app&utm_name=iossmf) has stated that the pity mechanism is likely to take effect at the 76th pull, and the SSR rate increases to 100% at the 90th pull (as described in gacha rules). We will assume that this scenario is true in our calculations. 
+
+Genshin Impact also includes the [10-pull bonus](bonus.html) in their gacha mechanism. However, since we are not sure if the 10-pull bonus only affects 4-star (SR) items or both 4-star and 5-star (SSR) items, we will perform separate calculations for both of them. 
+
+## pity with 10-pull bonus
+
+The Genshin gacha rules state that 
+
+### event rate up probabilities
+
+### comparison with no-pity probabilities
+
+## pity without 10-pull bonus
+
+### event rate up probabilities
+
+### comparison with no-pity probabilities
+
+
+## 
+
+
+```{r}
+
+```
+
