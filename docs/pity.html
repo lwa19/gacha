@@ -413,7 +413,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-12-19
+<strong>Last updated:</strong> 2020-12-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -504,16 +504,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreef70ff6468314ab15bb16380b23193c162c0cd8f4targetblankf70ff64a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/f70ff6468314ab15bb16380b23193c162c0cd8f4" target="_blank">f70ff64</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree1153765755b3c3adf9e8431b48f9945ae9eafe80targetblank1153765a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/1153765755b3c3adf9e8431b48f9945ae9eafe80" target="_blank">1153765</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreef70ff6468314ab15bb16380b23193c162c0cd8f4targetblankf70ff64a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree1153765755b3c3adf9e8431b48f9945ae9eafe80targetblank1153765a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/f70ff6468314ab15bb16380b23193c162c0cd8f4" target="_blank">f70ff64</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/1153765755b3c3adf9e8431b48f9945ae9eafe80" target="_blank">1153765</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -526,7 +526,11 @@ Ignored files:
     Ignored:    gacha/.RData
     Ignored:    gacha/.Rhistory
 
+Untracked files:
+    Untracked:  analysis/shiny.Rmd
+
 Unstaged changes:
+    Modified:   analysis/index.Rmd
     Modified:   code/wflow_init.R
 
 </code></pre>
@@ -566,6 +570,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/gacha/blob/1153765755b3c3adf9e8431b48f9945ae9eafe80/analysis/pity.Rmd" target="_blank">1153765</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-20
+</td>
+<td>
+added proof
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/gacha/eb5cbc660f8acabe8dfb9644a96e657b7b01fd4e/docs/pity.html" target="_blank">eb5cbc6</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -803,7 +841,7 @@ started pity file
 <h2>Model:</h2>
 <p>The tricky part about pity mechanism is that pulls (trials, <span class="math inline">\(X_i\)</span>) are i.i.d. Bernoulli up to a certain point (<span class="math inline">\(X_N\)</span>), after which the SSR probability increases linearly with the number of trials attempted. Let’s assume the threshold number of pulls before pity mechanism take effect is <span class="math inline">\(N\)</span>. We will divide the probability up into two segments:</p>
 <p>A: No SSR cards are pulled on the <span class="math inline">\(i = 1, 2, \dots, N\)</span> trials before the pity mechanism takes effect. For these <span class="math inline">\(N\)</span> trials, the probability of pulling an SSR card is <span class="math inline">\(p\)</span>, and the probability of pulling any other card is <span class="math inline">\(q = 1-p\)</span>.</p>
-<p>B: For all the subsequent pulls, <span class="math inline">\(i = N+1, N+2, \dots, k\)</span>, with each pull the probability of pulling an SSR increases with increment <span class="math inline">\(\delta\)</span>. This increase in probability is similar the idea of sampling without replacement, and the idea of “probability distribution for draws until first success without replacement” have also been explored before<span class="citation">[@ahlgren2014probability]</span>. However, in this case the probability of drawing the next success, termed as <span class="math inline">\(\frac{K}{N-n+1}\)</span> at the <span class="math inline">\(n\)</span>-th trial increases in a non-linear fashion. We would like to construct a model such that the probability of success increases linearly.</p>
+<p>B: For all the subsequent pulls, <span class="math inline">\(i = N+1, N+2, \dots, k\)</span>, with each pull the probability of pulling an SSR increases with increment <span class="math inline">\(\delta\)</span>. This increase in probability is similar the idea of sampling without replacement, and the idea of “probability distribution for draws until first success without replacement” have also been explored before<span class="citation">(Ahlgren 2014)</span>. However, in the drawing without replacement case, the probability of drawing the next success at the <span class="math inline">\(n\)</span>-th trial increases in a non-linear fashion. We would like to construct a model such that the probability of success increases linearly.</p>
 <p>In the following analysis, we will use the probabilities of SSR cards from Arknights as an example, instead of F/GO or Genshin Impact. The benefit of using Arknights as our example is that 1) they have clear documentation of rate of increase for their pity mechanism, instead of observations and deductions made by players on reddit, and 2) they only have characters in their gacha, and not equipments. Arknights non-event gacha (on banners after the first 10 pulls) is constructed as follows:</p>
 <p><em>The probability of pulling any SSR (6-star Operator)</em>: 2%</p>
 <p><em>pity mechanism</em>: If a 6-star Operator was not obtained after 50 pulls, the probability of pulling any 6-star Operator will increase to 4% in the 51st pull. If the 51st pull is still not a 6-star Operator, then the probability of pulling a 6-star Operator will increase to 6% in the 52nd pull, and the probability will keep increasing by 2% until it reaches 100%. This indicates that if the first 98 pulls (after the last 6-star Operator was pulled) did not yield a 6-star Operator, then a 6-star Operator is guaranteed to be drawn on the 99th pull (probability increases to 100%)</p>
@@ -822,25 +860,27 @@ started pity file
 <p><span class="math display">\[ Pr(X\leq k) = 1-(1-p)^k  = 1-(1-0.02)^k = 0.95\]</span></p>
 <p><span class="math display">\[ k = \frac{log(0.05)}{log(1-0.02)} = 148.28\]</span></p>
 </div>
-<div id="part-b" class="section level3">
-<h3>Part B</h3>
+<div id="part-b-pity-distribution" class="section level3">
+<h3>Part B – pity distribution</h3>
 <p>In part B, we focus only on the trials that took place AFTER the pity mechanisms is starting to take an effect. We will write the probability of obtaining the first SSR at each pull as <span class="math inline">\(S_i\)</span>, the probability of obtaining only failure up to this pull as <span class="math inline">\(F_i\)</span>, and the probability of SSR at that specific pull as <span class="math inline">\(p_i\)</span>, and the pity increment as <span class="math inline">\(\delta\)</span>.</p>
 <p>Let <span class="math inline">\(S\)</span> be the number of trials needed to pull 1 SSR card:</p>
 <p>Pull #1:</p>
-<p>Probablity of first success: <span class="math inline">\(Pr(S = 1) = p_1 = p + \delta\)</span></p>
+<p>Probablity of first success: <span class="math inline">\(Pr(X = 1) = p_1 = p + \delta\)</span></p>
 <p>Probablity of failure: <span class="math inline">\(F_1 = q_1 = 1-p_1 = 1-p_1 = 1-(p+\delta)\)</span></p>
 <p>Pull #2:</p>
-<p>Probablity of first success: <span class="math inline">\(Pr(S = 2) = q_1p_2 = (1-(p+\delta))(p+2\delta)\)</span></p>
+<p>Probablity of first success: <span class="math inline">\(Pr(X = 2) = q_1p_2 = (1-(p+\delta))(p+2\delta)\)</span></p>
 <p>Probablity of failure up to this pull: <span class="math inline">\(F_2 = q_1q_2 = (1-(p+\delta))(1-(p+2\delta))\)</span></p>
 <p>Pull #3:</p>
-<p>Probablity of first success: <span class="math inline">\(Pr(S = 3) = p_3\Pi_{i=1}^{2}q_i = (1-(p+\delta))(1-(p+2\delta))(p+3\delta)\)</span></p>
+<p>Probablity of first success: <span class="math inline">\(Pr(X = 3) = p_3\Pi_{i=1}^{2}q_i = (1-(p+\delta))(1-(p+2\delta))(p+3\delta)\)</span></p>
 <p>Probablity of failure up to this pull: <span class="math inline">\(F_3 = \Pi_{i=1}^{3}q_i = (1-(p+\delta))(1-(p+2\delta))(1-(p+3\delta))\)</span></p>
 <p><span class="math display">\[\dots\]</span></p>
 <p>Pull #n:</p>
-<p>Probability of first succcess: <span class="math inline">\(Pr(S = k) = p_k\Pi_{i=1}^{k-1}q_i = (p+n\delta)\Pi_{i=1}^{k-1}q_i\)</span></p>
+<p>Probability of first succcess:</p>
+<p><span class="math display">\[Pr(X = k) = p_k\Pi_{i=0}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i\]</span></p>
 <p>The cumulative probability can be calculated as:</p>
-<p><span class="math display">\[Pr(n\leq k) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
-<p>At a first glance, it seems that it is difficult to find an analytical solution for this problem, but we can still visualize the results and graph the cumulative probability function. Note that at the 99th pull, the probability of pulling an SSR card increases to 100%, after which the gacha resets to base probabilities.</p>
+<p><span class="math display">\[Pr(X \leq k) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
+<p>We will temporarily refer to this distribution as the <em>pity distribution</em>.</p>
+<p>At a first glance, it seems that it is difficult to find an analytical solution for this problem, but we can still visualize the results and graph the cumulative probability function. Note that at the 99th pull, the probability of pulling an SSR card increases to 100%, after which the gacha resets to base probabilities. The proof will be writen in the appendix below.</p>
 </div>
 </div>
 <div id="calculations-for-arknights" class="section level2">
@@ -995,6 +1035,66 @@ Lijia Wang
 </div>
 </div>
 <p>Results demonstrate once again that without the pity mechanism, players will not be able to reach 95% probability of pulling an SSR card within 99 pulls.</p>
+</div>
+</div>
+<div id="appendix" class="section level2">
+<h2>Appendix:</h2>
+<div id="a-proof-of-pity-distribution" class="section level3">
+<h3>A: Proof of pity distribution:</h3>
+<p>First, we would like to show that pity distribution is a proper probability distribution. This indicates that the probability density function (pdf) <span class="math inline">\(f(x)\)</span> must satisfy two conditions:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(\int_{-\infty}^{\infty}f(x)dx = 1\)</span></p></li>
+</ol>
+<p><strong>Proof 1 </strong>:</p>
+<p>From our discription of pity distribution above, we have</p>
+<p>Probability of first succcess in k trials (pdf) is:</p>
+<p><span class="math display">\[Pr(X = k) = f(X) = p_k\Pi_{i=0}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i\]</span></p>
+<p>Since <span class="math inline">\(p\geq 0\)</span>, <span class="math inline">\(q\geq 0\)</span>, <span class="math inline">\(\delta \geq 0\)</span>, <span class="math inline">\(Pr(X=k) \geq 0\)</span> must hold for all <span class="math inline">\(k\)</span>. Therefore condition 1 is satisfied.</p>
+<p><strong>Proof 2 </strong>:</p>
+<p>Assuming our cumulative distribution function derivation is correct (detailed proof in appendix B):</p>
+<p><span class="math display">\[Pr(X \leq k) = \Sigma_{i=1}^{k} Pr(X=i) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
+<p>It is easy to see that when <span class="math inline">\(k \to \infty\)</span>,</p>
+<p><span class="math display">\[ \Pi_{i=1}^{k}q_i = \Pi_{i=1}^{\infty}q_i \to 0\]</span></p>
+<p>Therefore as <span class="math inline">\(k \to \infty\)</span>,</p>
+<p><span class="math display">\[Pr(X \leq k) = \int_{-\infty}^{\infty}f(x)dx \to 1\]</span></p>
+<p>so condition 2 is also satisfied.</p>
+</div>
+<div id="b-proof-of-cumulative-distirbution-function" class="section level3">
+<h3>B: Proof of cumulative distirbution function:</h3>
+<p>We have stated previously that cumulative probability can be calculated as:</p>
+<p><span class="math display">\[Pr(X \leq k) = \Sigma_{i=1}^{k} Pr(X=i) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
+<p>Where:</p>
+<p>Probability of first succcess:</p>
+<p><span class="math display">\[Pr(X = k) = p_k\Pi_{i=1}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i\]</span></p>
+<p>and</p>
+<p><span class="math display">\[Pr(X \leq k) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
+<p>We want to show that when <span class="math inline">\(k\geq1\)</span>:</p>
+<p><span class="math display">\[g(k) = \Sigma_{i=1}^{k} [p_i\Pi_{i=0}^{k-1}q_i] = 1-\Pi_{i=1}^{k}q_i \]</span> where <span class="math inline">\(p_i= p+i\delta\)</span>, <span class="math inline">\(q_i = 1-p_i\)</span>, and <span class="math inline">\(q_0 = 1\)</span>.</p>
+<p>We can use proof by induction.</p>
+<p><strong>Base case</strong>: We want to show that equation holds for the smallest positive integer <span class="math inline">\(k=1\)</span></p>
+<p>when <span class="math inline">\(k = 1\)</span>:</p>
+<p><span class="math display">\[LHS = p_1 q_0 = p_i*1 = p_i\]</span></p>
+<p><span class="math display">\[RHS = 1-q_i = p_i = LHS\]</span></p>
+<p>Equation holds for the base case.</p>
+<p><strong>Inductive step</strong>: for any <span class="math inline">\(n\geq1\)</span>, if <span class="math inline">\(g(n)\)</span> holds, then <span class="math inline">\(g(n+1)\)</span> also holds.</p>
+<p>If equation holds for <span class="math inline">\(n\)</span>, then we have:</p>
+<p><span class="math display">\[ \Sigma_{i=1}^{n} [p_i\Pi_{i=0}^{n-1}q_i] = 1-\Pi_{i=1}^{n}q_i \]</span></p>
+<p>It follows that:</p>
+<p><span class="math display">\[ \Sigma_{i=1}^{n+1} [p_i\Pi_{i=0}^{n}q_i] = \Sigma_{i=1}^{n} [p_i\Pi_{i=0}^{n-1}q_i] + p_{n+1}\Pi_{i=0}^{n}q_i= 1-\Pi_{i=1}^{n}q_i + p_{n+1}\Pi_{i=0}^{n}q_i\]</span></p>
+<p>RHS can be simplified as:</p>
+<p><span class="math display">\[1-\Pi_{i=1}^{n}q_i + p_{n+1}\Pi_{i=0}^{n}q_i = 1-\Pi_{i=1}^{n}q_i(1-p_{n+1}) = 1-\Pi_{i=1}^{n}q_iq_{n+1} = 1-\Pi_{i=1}^{n+1}q_i\]</span></p>
+<p><span class="math display">\[ g(n+1) = \Sigma_{i=1}^{n+1} [p_i\Pi_{i=0}^{n}q_i] = 1-\Pi_{i=1}^{n+1}q_i\]</span></p>
+<p>Therefore, statment <span class="math inline">\(g(n+1)\)</span> also holds true, establishing the inductive step. We can thus conclude that <span class="math inline">\(g(k)\)</span> holds for all interger values <span class="math inline">\(k\geq1\)</span>.</p>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<div id="refs">
+<div id="ref-ahlgren2014probability">
+<p>Ahlgren, John. 2014. “The Probability Distribution for Draws Until First Success Without Replacement.” <em>arXiv Preprint arXiv:1404.1161</em>.</p>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1027,7 +1127,6 @@ loaded via a namespace (and not attached):
 [13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_3.6.2    
 [17] stringr_1.4.0   glue_1.3.2      httpuv_1.5.2    xfun_0.12      
 [21] yaml_2.2.1      compiler_3.6.2  htmltools_0.4.0 knitr_1.28     </code></pre>
-</div>
 </div>
 </div>
 
