@@ -57,34 +57,36 @@ $$ k = \frac{log(0.05)}{log(1-0.02)} = 148.28$$
 
 In part B, we focus only on the trials that took place AFTER the pity mechanisms is starting to take an effect. We will write the probability of obtaining the first SSR at each pull as $S_i$, the probability of obtaining only failure up to this pull as $F_i$, and the probability of SSR at that specific pull as $p_i$, and the pity increment as $\delta$. 
 
+Let $S$ be the number of trials needed to pull 1 SSR card: 
+
 Pull #1: 
 
-Probablity of first success: $S_1 = p_1 =  p + \delta$
+Probablity of first success: $Pr(S = 1) = p_1 =  p + \delta$
 
-Probablity of failure: $F_1 = q_1 = 1-S_1 = 1-p_1 = 1-(p+\delta)$
+Probablity of failure: $F_1 = q_1 = 1-p_1 = 1-p_1 = 1-(p+\delta)$
 
 
 Pull #2: 
 
-Probablity of first success: $S_2 = F_1p_2 = (1-(p+\delta))(p+2\delta)$
+Probablity of first success: $Pr(S = 2) = q_1p_2 = (1-(p+\delta))(p+2\delta)$
 
-Probablity of failure up to this pull: $F_2  = F_1q_2 = (1-(p+\delta))(1-(p+2\delta))$
+Probablity of failure up to this pull: $F_2 = q_1q_2 = (1-(p+\delta))(1-(p+2\delta))$
 
 Pull #3: 
 
-Probablity of first success: $S_3 = F_2p_3 = (1-(p+\delta))(1-(p+2\delta))(p+3\delta)$
+Probablity of first success: $Pr(S = 3) = p_3\Pi_{i=1}^{2}q_i = (1-(p+\delta))(1-(p+2\delta))(p+3\delta)$
 
-Probablity of failure up to this pull: $F_3 = F_2q_3 = (1-(p+\delta))(1-(p+2\delta))(1-(p+3\delta))$
+Probablity of failure up to this pull: $F_3 = \Pi_{i=1}^{3}q_i = (1-(p+\delta))(1-(p+2\delta))(1-(p+3\delta))$
 
 $$\dots$$
 
 Pull #n: 
 
-Probability of first succcess: $S_t = F_{n-1}p_n = F_{n-1}(p+n\delta)$
+Probability of first succcess: $Pr(S = k) = p_k\Pi_{i=1}^{k-1}q_i = (p+n\delta)\Pi_{i=1}^{k-1}q_i$
 
 The cumulative probability can be calculated as: 
 
-$$Pr(n\leq k) = 1-F_{k-1}F_k$$
+$$Pr(n\leq k) = 1-\Pi_{i=1}^{k}q_i$$
 
 At a first glance, it seems that it is difficult to find an analytical solution for this problem, but we can still visualize the results and graph the cumulative probability function. Note that at the 99th pull, the probability of pulling an SSR card increases to 100%, after which the gacha resets to base probabilities. 
 
