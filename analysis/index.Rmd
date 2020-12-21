@@ -51,6 +51,8 @@ Case studies for F/GO and Arknights are conducted within the respective models. 
 
 - Genshin Impact ("10-pull bonus" and "pity mechanism"; character and equipment in gacha): [10-pull + pity](genshin.html)
 
+- Comparison of the three case studies gacha's: [non-event](compare.html)
+
 ## Additional Comments: 
 
 I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions, and Haoran Li for working through the pity distribution proof with me. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu. 
