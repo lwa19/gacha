@@ -1,5 +1,5 @@
 ---
-title: "bonus"
+title: "10-pull bonus"
 author: "Lijia Wang"
 date: "2020-12-16"
 output: workflowr::wflow_html
@@ -57,7 +57,7 @@ For each 10-pull:
 
 $$Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.01)^9(5*0.15+5*0.04) = 0.132 $$
 
-As a quick comparison, the probability of obtaining more than 1 SSR for 10 single pulls are: 
+As a quick comparison, the probability of obtaining one or more SSR for 10 single pulls are: 
 
 $$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.01} = 1-0.905 = 0.095$$
 

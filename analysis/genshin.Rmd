@@ -13,29 +13,218 @@ Now that the Zhongli banner is almost over, I'm sure a lot of you are saving up 
 
 ## Model Assumptions
 
-I would like to state that we are very unsure about how the Genshin Impact (referred to as "Genshin") algorithm actually works. Unlike Arknights, the gacha statistics given in the game offers very little insights on *when* the pity mechanism kicks in, and the size of the increment in probability. However, an [empirical study on reddit](https://www.reddit.com/r/Genshin_Impact/comments/jo9d9d/the_5_rate_is_not_uniform_06_there_is_a_soft_pity/?utm_source=share&utm_medium=ios_app&utm_name=iossmf) has stated that the pity mechanism is likely to take effect at the 76th pull, and the SSR rate increases to 100% at the 90th pull (as described in gacha rules). We will assume that this scenario is true in our calculations. 
+I would like to state that we are very unsure about how the Genshin Impact (referred to as "Genshin") algorithm actually works. Unlike Arknights, the gacha statistics given in the game offers very little insights on *when* the pity mechanism kicks in, and the size of the increment in probability. However, an [empirical study on reddit](https://www.reddit.com/r/Genshin_Impact/comments/jod9o4/whale_watching_logs_2_the_blue_whale/) has stated that the pity mechanism is likely to take effect at the 76th pull, and the SSR rate increases to 100% at the 90th pull (as described in gacha rules). We will assume that this scenario is true in our calculations. 
 
-Genshin Impact also includes the [10-pull bonus](bonus.html) in their gacha mechanism. However, since we are not sure if the 10-pull bonus only affects 4-star (SR) items or both 4-star and 5-star (SSR) items, we will perform separate calculations for both of them. 
+Genshin Impact also includes the [10-pull bonus](bonus.html) in their gacha mechanism. Similar to our prior analyses, we assume that the 10-pull bonus affects both 4-star (SR) items and 5-star (SSR) items. 
 
-## pity with 10-pull bonus
+## Genshin Probabilities:
 
-The Genshin gacha rules state that 
+The Genshin gacha rules state that player is "guaranteed to win a 4-star or above item at least once per 10 attempts", and "guaranteed to win 5-star character at least once per 90 attempts." Both conditions apply to both event and non-event gacha pools. I'm honestly not sure what their stated "consolidated probabilities" entail, so that statistic is not used in our calculations. 
 
-### event rate up probabilities
+### non-event probabilities: 
 
-### comparison with no-pity probabilities
+- base probability of 5-star item: 0.600%
 
-## pity without 10-pull bonus
+- base probability of 5-star character ($p_c$): 0.300%
 
-### event rate up probabilities
+- base probability of 5-star weapon/equipment ($p_e$): 0.300%
 
-### comparison with no-pity probabilities
+- base probability of 4-star item ($q$): 5.100%
+
+- bonus multiplier: $b = \frac{100}{0.600 + 5.100}= 17.544$ 
+
+### event rate-up probabilities: 
+
+*Note*: data gathered from Zhongli banner. No 5-star weapons were in the event gacha. 
+
+- base probability of 5-star item: 0.600%
+
+- base probability of 5-star character ($p_c$): 0.600%
+
+- base probability of 5-star weapon/equipment ($p_e$): 0%
+
+- base probability of 4-star item ($q$): 5.100%
+
+- bonus multiplier: $b = \frac{100}{0.600 + 5.100}= 17.544$ 
 
 
-## 
+## pity with 10-pull bonus (non-event)
 
+### Calculating the 10-pull bonus probabilities
+
+For each 10-pull: 
+
+$$Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.003)^9(17.544*0.051+17.544*0.003) = 0.0779 $$
+
+As a quick comparison, the probability of obtaining one or more SSR character for 10 single pulls are:
+
+$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.003} = 1-0.9704 = 0.0296$$
+
+Even though the 10-pull bonus increased the probability of pulling one or more SSR character within 10 pulls, we see that due to the significantly decreased base probabilities, the 10-pull probability is significantly smaller than the F/GO bonus probabilities (0.132). 
+
+### Calculating the pity probabilities: 
+
+If the Genshin pity probability increases linearly by each pull, like the mechanism employed by Arknights, then we would like to find a base probability that factors in the 10-pull bonus, and increase the probability from there. We also need to calculate the pity increments, since pity increments is independent of the bonus probabilities. 
+
+**pity increments**: 
+
+$$ \delta = \frac{1-p_c}{90-N}=\frac{1-0.003}{90-75} = 0.0665$$
+
+**bonus probabilities**: 
+
+(This might be cheating, but) I will calculate the single pull probabilities with bonus ($p$) using the 10-pull probability with bonus. 
+
+Remember, the probability of obtaining one or more SSR character for 10 single pulls are:
+
+$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.003} = 1-0.9704 = 0.0296$$
+
+$$ Pr(X\geq1) = 1-e^{-10p} = 0.0779$$
+
+$$ p = \frac{log(1- 0.0779)}{-10} = 0.00811 $$ 
+
+And the rest of the calculation is easy -- we will simply substitute the new probability with bonus into our [pity](pity.html) model: 
+
+Probability of first succcess: 
+
+$$Pr(X = k) = p_k\Pi_{i=0}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i$$
+
+The cumulative probability can be calculated as: 
+
+$$Pr(X \leq k) = 1-\Pi_{i=1}^{k}q_i$$
+
+In this case, $p = 0.00811$, and $\delta = 0.0665$ 
+
+### Visualization
 
 ```{r}
+# Genshin non-event parameters
+base.p = 0.00811
+incr = 0.0665
+N = 75    # pulls before pity starts
 
+pi = c(rep(base.p, N-1), seq(base.p, to = 1, by = incr))
+i = length(pi)
+fi = rep(1-base.p, i)
+
+for(ind in 2:i){
+  fi[ind] = (1-pi[ind])*fi[ind-1]
+}
+
+plot(seq(1,i), 1 - fi, type = 'l', 
+     main = "Probabilty of pulling one SSR within n pulls, non-event", 
+     xlab = "Number of trials (n)", ylab = "Probability")
+abline(h = 0.50, col = 2)
+abline(h = 0.95, col = 3)
+abline(h = 0.99, col = 4)
+
+p50 = which.min(abs((1-fi)-0.5))
+p95 = which.min(abs((1-fi)-0.95))
+p99 = which.min(abs((1-fi)-0.99))
+
+abline(v = p50, col = 2, lty = 2)
+abline(v = p95, col = 3, lty = 2)
+abline(v = p99, col = 4, lty = 2)
+abline(v = N, col = 6, lty = 3)
+
+legend('bottomright', legend=c('pity threshold', 'P = 50%', 'P = 95%', 'P = 99%'), 
+       col = c(6, 2, 3, 4), lty = 1)
+
+(paste("Player has 50% probability to pull their first SSR within", p50, "pulls."))
+(paste("Player has 95% probability to pull their first SSR within", p95, "pulls."))
+(paste("Player has 99% probability to pull their first SSR within", p99, "pulls."))
 ```
+
+
+## pity with 10-pull bonus (event)
+
+We basically repeat all calculations from the previous part
+
+### Calculating the 10-pull bonus probabilities
+
+For each 10-pull, the probability of pulling one or more SSR characters is: 
+
+$$Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.006)^9(17.544*0.051) = 0.152 $$
+
+As a quick comparison, the probability of obtaining one or more SSR character for 10 single pulls are:
+
+$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.006} = 1-0.9418 = 0.0582$$
+
+### Calculating the pity probabilities: 
+
+**pity increments**: 
+
+$$ \delta = \frac{1-p_c}{90-N}=\frac{1-0.006}{90-75} = 0.0663$$
+
+**bonus probabilities**: 
+
+Once again, I will calculate the single pull probabilities with bonus ($p$) using the 10-pull probability with bonus. 
+
+The probability of obtaining one or more SSR character for 10 single pulls are:
+
+$$Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.006} = 1-0.9418 = 0.0582$$
+
+$$ Pr(X\geq1) = 1-e^{-10p} = 0.152$$
+
+$$ p = \frac{log(1- 0.152)}{-10} =  0.0165$$ 
+
+Substitute the new probability with bonus into our [pity](pity.html) model: 
+
+Probability of first succcess: 
+
+$$Pr(X = k) = p_k\Pi_{i=0}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i$$
+
+The cumulative probability can be calculated as: 
+
+$$Pr(X \leq k) = 1-\Pi_{i=1}^{k}q_i$$
+
+In this case, $p =  0.0165$, and $\delta = 0.0663$ 
+
+### Visualization
+
+```{r}
+# Genshin event parameters
+base.p = 0.0165
+incr = 0.0663
+N = 75    # pulls before pity starts
+
+pi = c(rep(base.p, N-1), seq(base.p, to = 1, by = incr))
+i = length(pi)
+fi = rep(1-base.p, i)
+
+for(ind in 2:i){
+  fi[ind] = (1-pi[ind])*fi[ind-1]
+}
+
+
+plot(seq(1,i), 1 - fi, type = 'l', 
+     main = "Probabilty of pulling one SSR within n pulls, event", 
+     xlab = "Number of trials (n)", ylab = "Probability")
+abline(h = 0.50, col = 2)
+abline(h = 0.95, col = 3)
+abline(h = 0.99, col = 4)
+
+p50 = which.min(abs((1-fi)-0.5))
+p95 = which.min(abs((1-fi)-0.95))
+p99 = which.min(abs((1-fi)-0.99))
+
+abline(v = p50, col = 2, lty = 2)
+abline(v = p95, col = 3, lty = 2)
+abline(v = p99, col = 4, lty = 2)
+abline(v = N, col = 6, lty = 3)
+
+legend('bottomright', legend=c('pity threshold', 'P = 50%', 'P = 95%', 'P = 99%'), 
+       col = c(6, 2, 3, 4), lty = 1)
+
+(paste("Player has 50% probability to pull their first SSR within", p50, "pulls."))
+(paste("Player has 95% probability to pull their first SSR within", p95, "pulls."))
+(paste("Player has 99% probability to pull their first SSR within", p99, "pulls."))
+```
+
+
+### Remarks: 
+
+We can see that the event probabilities decrease the number of pulls required to hit 50% probability of obtaining 1 SSR character, but has very little effect on the number of pulls required to hit 95% and 99% probability. This is unsurprising because we can easily observe that the 10-pull bonus offers a very small increment on the per-pull probability, and this increment is overpowered by the pity mechanism once that kicks in. 
+
+One additional note is that when compared to the observations in the [reddit empirical study](https://www.reddit.com/r/Genshin_Impact/comments/jod9o4/whale_watching_logs_2_the_blue_whale/), we can see that our probability model agrees with their observation that there should be very few instances where more than 84 pulls are needed to pull one SSR character. 
+
 

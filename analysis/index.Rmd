@@ -35,23 +35,25 @@ The majority of the gacha games employ one or more aspects of these gacha mechan
 
 ## Methods: 
 
-- [Single pulls, with examples from F/GO](gacha.html)
+- [Single pulls](gacha.html)
 
-- [10-pull bonus, with examples from F/GO](bonus.html)
+- [10-pull bonus](bonus.html)
 
-- [pity mechanism, with examples from Arknights](pity.html)
+- [pity mechanism](pity.html)
 
-## Case Studies (coming soon... Maybe): 
+## Case Studies
 
-Fate/Grand Order: "10-pull bonus" only; characters and equipment in gacha
+Case studies for F/GO and Arknights are conducted within the respective models. Even though general tier probabilities are used in the examples, the character-specific pull number can be easily calculated by substituting the tier probabilities with character probabilities. The case study for Genshin Impact is conducted in detail as an example of combining 10-pull bonus and pity mechanism. 
 
-Arknights: "10-pull bonus" and "pity mechanism"; only character cards in gacha
+- Fate/Grand Order ("10-pull bonus" only; characters and equipment in gacha): [single pull](https://lwa19.github.io/gacha/gacha.html#application_in_fgo7) and [10-pull](https://lwa19.github.io/gacha/bonus.html#application_in_fgo7) 
 
-Genshin Impact: "10-pull bonus" and "pity mechanism"; character and equipment in gacha
+- Arknights ("10-pull bonus" and "pity mechanism"; only character cards in gacha): [simple pity](https://lwa19.github.io/gacha/pity.html#calculations_for_arknights)
+
+- Genshin Impact ("10-pull bonus" and "pity mechanism"; character and equipment in gacha): [10-pull + pity](genshin.html)
 
 ## Additional Comments: 
 
-I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu. 
+I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions, and Haoran Li for working through the pity distribution proof with me. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu. 
 
 ## References
 
