@@ -1,0 +1,66 @@
+---
+title: "compare"
+author: "Lijia Wang"
+date: "2020-12-20"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+We will pitch the three games against each other. You are free to choose which gacha you think is most friendly to you. 
+
+## Assumptions: 
+
+We are using non-event probabilities for all three gacha's. We are also assuming that you are taking full advantage of the gacha (only doing 10-pulls). 
+
+```{r}
+n = seq(1,90)
+
+# F/GO parameters
+p.fgo = 0.0142 # calculated rate for a 5* servant (character) in a single pull with bonus
+p.geom = pgeom(n, prob = p.fgo)
+
+# Arknights parameters
+p.ak = 0.02
+incr.ak = 0.02
+N.ak = 50    # pulls before pity starts
+
+pi.ak = c(rep(p.ak, N.ak-1), seq(p.ak, to = 1, by = incr.ak))[1:90]
+fi.ak = rep(1-p.ak, 90)
+for(ind in 2:90){
+  fi.ak[ind] = (1-pi.ak[ind])*fi.ak[ind-1]
+}
+
+# Genshin parameters
+p.gi = 0.00811
+incr.gi = 0.0665
+N.gi = 75    # pulls before pity starts
+
+pi.gi = c(rep(p.gi, N.gi-1), seq(p.gi, to = 1, by = incr.gi))
+fi.gi = rep(1-p.gi, 90)
+for(ind in 2:90){
+  fi.gi[ind] = (1-pi.gi[ind])*fi.gi[ind-1]
+}
+
+# plot
+plot(n, p.geom, type = 'l', main = "Probability of obtaining 1 SSR within n pulls", 
+     xlab = "Number of pulls (n)", ylab = "Probability", 
+     ylim = c(0,1), lwd = 2)
+lines(n, 1 - fi.ak, type = 'l', col = 5, lwd = 2)
+lines(n, 1 - fi.gi, type = 'l', col = 6, lwd = 2)
+
+abline(h=0.5, col = 2)
+abline(h=0.95, col = 3)
+abline(h=0.99, col = 4)
+
+# abline(v = 4.896, col = 2, lty = 2)
+# abline(v = 21.16, col = 3, lty = 2)
+# abline(v = 32.53, col = 4, lty = 2)
+
+legend('bottomright', legend=c('F/GO', 'Arknights','Genshin Impact', 'P = 50%', 'P = 95%', 'P = 99%'),
+       col = c(1,5,6, 2, 3, 4), lty = 1, cex = 0.75)
+```
+
+
