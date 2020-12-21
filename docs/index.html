@@ -333,7 +333,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-12-18
+<strong>Last updated:</strong> 2020-12-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -364,16 +364,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree543e0584609c7467d654ea2f964306a42f5290e9targetblank543e058a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/543e0584609c7467d654ea2f964306a42f5290e9" target="_blank">543e058</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreea82f0539b308e609aa0e7b5dbef719bf6801908atargetblanka82f053a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/a82f0539b308e609aa0e7b5dbef719bf6801908a" target="_blank">a82f053</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatree543e0584609c7467d654ea2f964306a42f5290e9targetblank543e058a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreea82f0539b308e609aa0e7b5dbef719bf6801908atargetblanka82f053a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/543e0584609c7467d654ea2f964306a42f5290e9" target="_blank">543e058</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/a82f0539b308e609aa0e7b5dbef719bf6801908a" target="_blank">a82f053</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -385,6 +385,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    gacha/.RData
     Ignored:    gacha/.Rhistory
+
+Untracked files:
+    Untracked:  analysis/shiny.Rmd
 
 Unstaged changes:
     Modified:   code/wflow_init.R
@@ -426,6 +429,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/gacha/blob/a82f0539b308e609aa0e7b5dbef719bf6801908a/analysis/index.Rmd" target="_blank">a82f053</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-20
+</td>
+<td>
+finished Genshin Case Study
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/gacha/b0e88f79fbdac82c464392ea0c78134ff3319b27/docs/index.html" target="_blank">b0e88f7</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -725,20 +762,23 @@ First commit
 <div id="methods" class="section level2">
 <h2>Methods:</h2>
 <ul>
-<li><p><a href="gacha.html">Single pulls, with examples from F/GO</a></p></li>
-<li><p><a href="bonus.html">10-pull bonus, with examples from F/GO</a></p></li>
-<li><p><a href="pity.html">pity mechanism, with examples from Arknights</a></p></li>
+<li><p><a href="gacha.html">Single pulls</a></p></li>
+<li><p><a href="bonus.html">10-pull bonus</a></p></li>
+<li><p><a href="pity.html">pity mechanism</a></p></li>
 </ul>
 </div>
-<div id="case-studies-coming-soon-maybe" class="section level2">
-<h2>Case Studies (coming soon… Maybe):</h2>
-<p>Fate/Grand Order: “10-pull bonus” only; characters and equipment in gacha</p>
-<p>Arknights: “10-pull bonus” and “pity mechanism”; only character cards in gacha</p>
-<p>Genshin Impact: “10-pull bonus” and “pity mechanism”; character and equipment in gacha</p>
+<div id="case-studies" class="section level2">
+<h2>Case Studies</h2>
+<p>Case studies for F/GO and Arknights are conducted within the respective models. Even though general tier probabilities are used in the examples, the character-specific pull number can be easily calculated by substituting the tier probabilities with character probabilities. The case study for Genshin Impact is conducted in detail as an example of combining 10-pull bonus and pity mechanism.</p>
+<ul>
+<li><p>Fate/Grand Order (“10-pull bonus” only; characters and equipment in gacha): <a href="https://lwa19.github.io/gacha/gacha.html#application_in_fgo7">single pull</a> and <a href="https://lwa19.github.io/gacha/bonus.html#application_in_fgo7">10-pull</a></p></li>
+<li><p>Arknights (“10-pull bonus” and “pity mechanism”; only character cards in gacha): <a href="https://lwa19.github.io/gacha/pity.html#calculations_for_arknights">simple pity</a></p></li>
+<li><p>Genshin Impact (“10-pull bonus” and “pity mechanism”; character and equipment in gacha): <a href="genshin.html">10-pull + pity</a></p></li>
+</ul>
 </div>
 <div id="additional-comments" class="section level2">
 <h2>Additional Comments:</h2>
-<p>I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu.</p>
+<p>I would like to thank Ruochong Ji and Terry Ming for in-depth discussions on gacha mechanisms and the underlying probability distributions, and Haoran Li for working through the pity distribution proof with me. I would also like to reiterate that in this analysis, I made a lot of assumptions on how the gacha mechanisms operates (particularly regarding the 10-pull bonus), so the observations might not be accurate and should be taken with a grain of salt. I welcome all critism and suggestions. You may reach me at lwang19 at uchicago dot edu.</p>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>

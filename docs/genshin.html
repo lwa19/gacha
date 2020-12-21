@@ -413,7 +413,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-12-19
+<strong>Last updated:</strong> 2020-12-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -504,16 +504,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreeb0b051c0ee4d2bb4a69e0e0313a2c0555d3be002targetblankb0b051ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/b0b051c0ee4d2bb4a69e0e0313a2c0555d3be002" target="_blank">b0b051c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreea82f0539b308e609aa0e7b5dbef719bf6801908atargetblanka82f053a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/lwa19/gacha/tree/a82f0539b308e609aa0e7b5dbef719bf6801908a" target="_blank">a82f053</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreeb0b051c0ee4d2bb4a69e0e0313a2c0555d3be002targetblankb0b051ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19gachatreea82f0539b308e609aa0e7b5dbef719bf6801908atargetblanka82f053a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/b0b051c0ee4d2bb4a69e0e0313a2c0555d3be002" target="_blank">b0b051c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/lwa19/gacha/tree/a82f0539b308e609aa0e7b5dbef719bf6801908a" target="_blank">a82f053</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -525,6 +525,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    gacha/.RData
     Ignored:    gacha/.Rhistory
+
+Untracked files:
+    Untracked:  analysis/shiny.Rmd
 
 Unstaged changes:
     Modified:   code/wflow_init.R
@@ -571,6 +574,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/lwa19/gacha/blob/a82f0539b308e609aa0e7b5dbef719bf6801908a/analysis/genshin.Rmd" target="_blank">a82f053</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-20
+</td>
+<td>
+finished Genshin Case Study
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/gacha/52a5ece5145ea7b3aae7f1c6a76b17c9ccf2fe77/docs/genshin.html" target="_blank">52a5ece</a>
+</td>
+<td>
+Lijia Wang
+</td>
+<td>
+2020-12-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/lwa19/gacha/blob/b0b051c0ee4d2bb4a69e0e0313a2c0555d3be002/analysis/genshin.Rmd" target="_blank">b0b051c</a>
 </td>
 <td>
@@ -596,30 +633,177 @@ added content
 </div>
 <div id="model-assumptions" class="section level2">
 <h2>Model Assumptions</h2>
-<p>I would like to state that we are very unsure about how the Genshin Impact (referred to as “Genshin”) algorithm actually works. Unlike Arknights, the gacha statistics given in the game offers very little insights on <em>when</em> the pity mechanism kicks in, and the size of the increment in probability. However, an <a href="https://www.reddit.com/r/Genshin_Impact/comments/jo9d9d/the_5_rate_is_not_uniform_06_there_is_a_soft_pity/?utm_source=share&amp;utm_medium=ios_app&amp;utm_name=iossmf">empirical study on reddit</a> has stated that the pity mechanism is likely to take effect at the 76th pull, and the SSR rate increases to 100% at the 90th pull (as described in gacha rules). We will assume that this scenario is true in our calculations.</p>
-<p>Genshin Impact also includes the <a href="bonus.html">10-pull bonus</a> in their gacha mechanism. However, since we are not sure if the 10-pull bonus only affects 4-star (SR) items or both 4-star and 5-star (SSR) items, we will perform separate calculations for both of them.</p>
+<p>I would like to state that we are very unsure about how the Genshin Impact (referred to as “Genshin”) algorithm actually works. Unlike Arknights, the gacha statistics given in the game offers very little insights on <em>when</em> the pity mechanism kicks in, and the size of the increment in probability. However, an <a href="https://www.reddit.com/r/Genshin_Impact/comments/jod9o4/whale_watching_logs_2_the_blue_whale/">empirical study on reddit</a> has stated that the pity mechanism is likely to take effect at the 76th pull, and the SSR rate increases to 100% at the 90th pull (as described in gacha rules). We will assume that this scenario is true in our calculations.</p>
+<p>Genshin Impact also includes the <a href="bonus.html">10-pull bonus</a> in their gacha mechanism. Similar to our prior analyses, we assume that the 10-pull bonus affects both 4-star (SR) items and 5-star (SSR) items.</p>
 </div>
-<div id="pity-with-10-pull-bonus" class="section level2">
-<h2>pity with 10-pull bonus</h2>
-<p>The Genshin gacha rules state that</p>
+<div id="genshin-probabilities" class="section level2">
+<h2>Genshin Probabilities:</h2>
+<p>The Genshin gacha rules state that player is “guaranteed to win a 4-star or above item at least once per 10 attempts”, and “guaranteed to win 5-star character at least once per 90 attempts.” Both conditions apply to both event and non-event gacha pools. I’m honestly not sure what their stated “consolidated probabilities” entail, so that statistic is not used in our calculations.</p>
+<div id="non-event-probabilities" class="section level3">
+<h3>non-event probabilities:</h3>
+<ul>
+<li><p>base probability of 5-star item: 0.600%</p></li>
+<li><p>base probability of 5-star character (<span class="math inline">\(p_c\)</span>): 0.300%</p></li>
+<li><p>base probability of 5-star weapon/equipment (<span class="math inline">\(p_e\)</span>): 0.300%</p></li>
+<li><p>base probability of 4-star item (<span class="math inline">\(q\)</span>): 5.100%</p></li>
+<li><p>bonus multiplier: <span class="math inline">\(b = \frac{100}{0.600 + 5.100}= 17.544\)</span></p></li>
+</ul>
+</div>
 <div id="event-rate-up-probabilities" class="section level3">
-<h3>event rate up probabilities</h3>
-</div>
-<div id="comparison-with-no-pity-probabilities" class="section level3">
-<h3>comparison with no-pity probabilities</h3>
-</div>
-</div>
-<div id="pity-without-10-pull-bonus" class="section level2">
-<h2>pity without 10-pull bonus</h2>
-<div id="event-rate-up-probabilities-1" class="section level3">
-<h3>event rate up probabilities</h3>
-</div>
-<div id="comparison-with-no-pity-probabilities-1" class="section level3">
-<h3>comparison with no-pity probabilities</h3>
+<h3>event rate-up probabilities:</h3>
+<p><em>Note</em>: data gathered from Zhongli banner. No 5-star weapons were in the event gacha.</p>
+<ul>
+<li><p>base probability of 5-star item: 0.600%</p></li>
+<li><p>base probability of 5-star character (<span class="math inline">\(p_c\)</span>): 0.600%</p></li>
+<li><p>base probability of 5-star weapon/equipment (<span class="math inline">\(p_e\)</span>): 0%</p></li>
+<li><p>base probability of 4-star item (<span class="math inline">\(q\)</span>): 5.100%</p></li>
+<li><p>bonus multiplier: <span class="math inline">\(b = \frac{100}{0.600 + 5.100}= 17.544\)</span></p></li>
+</ul>
 </div>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="pity-with-10-pull-bonus-non-event" class="section level2">
+<h2>pity with 10-pull bonus (non-event)</h2>
+<div id="calculating-the-10-pull-bonus-probabilities" class="section level3">
+<h3>Calculating the 10-pull bonus probabilities</h3>
+<p>For each 10-pull:</p>
+<p><span class="math display">\[Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.003)^9(17.544*0.051+17.544*0.003) = 0.0779 \]</span></p>
+<p>As a quick comparison, the probability of obtaining one or more SSR character for 10 single pulls are:</p>
+<p><span class="math display">\[Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.003} = 1-0.9704 = 0.0296\]</span></p>
+<p>Even though the 10-pull bonus increased the probability of pulling one or more SSR character within 10 pulls, we see that due to the significantly decreased base probabilities, the 10-pull probability is significantly smaller than the F/GO bonus probabilities (0.132).</p>
+</div>
+<div id="calculating-the-pity-probabilities" class="section level3">
+<h3>Calculating the pity probabilities:</h3>
+<p>If the Genshin pity probability increases linearly by each pull, like the mechanism employed by Arknights, then we would like to find a base probability that factors in the 10-pull bonus, and increase the probability from there. We also need to calculate the pity increments, since pity increments is independent of the bonus probabilities.</p>
+<p><strong>pity increments</strong>:</p>
+<p><span class="math display">\[ \delta = \frac{1-p_c}{90-N}=\frac{1-0.003}{90-75} = 0.0665\]</span></p>
+<p><strong>bonus probabilities</strong>:</p>
+<p>(This might be cheating, but) I will calculate the single pull probabilities with bonus (<span class="math inline">\(p\)</span>) using the 10-pull probability with bonus.</p>
+<p>Remember, the probability of obtaining one or more SSR character for 10 single pulls are:</p>
+<p><span class="math display">\[Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.003} = 1-0.9704 = 0.0296\]</span></p>
+<p><span class="math display">\[ Pr(X\geq1) = 1-e^{-10p} = 0.0779\]</span></p>
+<p><span class="math display">\[ p = \frac{log(1- 0.0779)}{-10} = 0.00811 \]</span></p>
+<p>And the rest of the calculation is easy – we will simply substitute the new probability with bonus into our <a href="pity.html">pity</a> model:</p>
+<p>Probability of first succcess:</p>
+<p><span class="math display">\[Pr(X = k) = p_k\Pi_{i=0}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i\]</span></p>
+<p>The cumulative probability can be calculated as:</p>
+<p><span class="math display">\[Pr(X \leq k) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
+<p>In this case, <span class="math inline">\(p = 0.00811\)</span>, and <span class="math inline">\(\delta = 0.0665\)</span></p>
+</div>
+<div id="visualization" class="section level3">
+<h3>Visualization</h3>
+<pre class="r"><code># Genshin non-event parameters
+base.p = 0.00811
+incr = 0.0665
+N = 75    # pulls before pity starts
+
+pi = c(rep(base.p, N-1), seq(base.p, to = 1, by = incr))
+i = length(pi)
+fi = rep(1-base.p, i)
+
+for(ind in 2:i){
+  fi[ind] = (1-pi[ind])*fi[ind-1]
+}
+
+plot(seq(1,i), 1 - fi, type = &#39;l&#39;, 
+     main = &quot;Probabilty of pulling one SSR within n pulls, non-event&quot;, 
+     xlab = &quot;Number of trials (n)&quot;, ylab = &quot;Probability&quot;)
+abline(h = 0.50, col = 2)
+abline(h = 0.95, col = 3)
+abline(h = 0.99, col = 4)
+
+p50 = which.min(abs((1-fi)-0.5))
+p95 = which.min(abs((1-fi)-0.95))
+p99 = which.min(abs((1-fi)-0.99))
+
+abline(v = p50, col = 2, lty = 2)
+abline(v = p95, col = 3, lty = 2)
+abline(v = p99, col = 4, lty = 2)
+abline(v = N, col = 6, lty = 3)
+
+legend(&#39;bottomright&#39;, legend=c(&#39;pity threshold&#39;, &#39;P = 50%&#39;, &#39;P = 95%&#39;, &#39;P = 99%&#39;), 
+       col = c(6, 2, 3, 4), lty = 1)</code></pre>
+<p><img src="figure/genshin.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>(paste(&quot;Player has 50% probability to pull their first SSR within&quot;, p50, &quot;pulls.&quot;))</code></pre>
+<pre><code>[1] &quot;Player has 50% probability to pull their first SSR within 76 pulls.&quot;</code></pre>
+<pre class="r"><code>(paste(&quot;Player has 95% probability to pull their first SSR within&quot;, p95, &quot;pulls.&quot;))</code></pre>
+<pre><code>[1] &quot;Player has 95% probability to pull their first SSR within 82 pulls.&quot;</code></pre>
+<pre class="r"><code>(paste(&quot;Player has 99% probability to pull their first SSR within&quot;, p99, &quot;pulls.&quot;))</code></pre>
+<pre><code>[1] &quot;Player has 99% probability to pull their first SSR within 84 pulls.&quot;</code></pre>
+</div>
+</div>
+<div id="pity-with-10-pull-bonus-event" class="section level2">
+<h2>pity with 10-pull bonus (event)</h2>
+<p>We basically repeat all calculations from the previous part</p>
+<div id="calculating-the-10-pull-bonus-probabilities-1" class="section level3">
+<h3>Calculating the 10-pull bonus probabilities</h3>
+<p>For each 10-pull, the probability of pulling one or more SSR characters is:</p>
+<p><span class="math display">\[Pr(X\geq1) = 1-(1-p_c)^9 (bq + bp_e) = 1-(1-0.006)^9(17.544*0.051) = 0.152 \]</span></p>
+<p>As a quick comparison, the probability of obtaining one or more SSR character for 10 single pulls are:</p>
+<p><span class="math display">\[Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.006} = 1-0.9418 = 0.0582\]</span></p>
+</div>
+<div id="calculating-the-pity-probabilities-1" class="section level3">
+<h3>Calculating the pity probabilities:</h3>
+<p><strong>pity increments</strong>:</p>
+<p><span class="math display">\[ \delta = \frac{1-p_c}{90-N}=\frac{1-0.006}{90-75} = 0.0663\]</span></p>
+<p><strong>bonus probabilities</strong>:</p>
+<p>Once again, I will calculate the single pull probabilities with bonus (<span class="math inline">\(p\)</span>) using the 10-pull probability with bonus.</p>
+<p>The probability of obtaining one or more SSR character for 10 single pulls are:</p>
+<p><span class="math display">\[Pr(X\geq1) = 1- Pr(X=0) = 1-e^{-np} = 1-e^{-10*0.006} = 1-0.9418 = 0.0582\]</span></p>
+<p><span class="math display">\[ Pr(X\geq1) = 1-e^{-10p} = 0.152\]</span></p>
+<p><span class="math display">\[ p = \frac{log(1- 0.152)}{-10} =  0.0165\]</span></p>
+<p>Substitute the new probability with bonus into our <a href="pity.html">pity</a> model:</p>
+<p>Probability of first succcess:</p>
+<p><span class="math display">\[Pr(X = k) = p_k\Pi_{i=0}^{k-1}q_i = (p+k\delta)\Pi_{i=0}^{k-1}q_i\]</span></p>
+<p>The cumulative probability can be calculated as:</p>
+<p><span class="math display">\[Pr(X \leq k) = 1-\Pi_{i=1}^{k}q_i\]</span></p>
+<p>In this case, <span class="math inline">\(p = 0.0165\)</span>, and <span class="math inline">\(\delta = 0.0663\)</span></p>
+</div>
+<div id="visualization-1" class="section level3">
+<h3>Visualization</h3>
+<pre class="r"><code># Genshin event parameters
+base.p = 0.0165
+incr = 0.0663
+N = 75    # pulls before pity starts
+
+pi = c(rep(base.p, N-1), seq(base.p, to = 1, by = incr))
+i = length(pi)
+fi = rep(1-base.p, i)
+
+for(ind in 2:i){
+  fi[ind] = (1-pi[ind])*fi[ind-1]
+}
+
+
+plot(seq(1,i), 1 - fi, type = &#39;l&#39;, 
+     main = &quot;Probabilty of pulling one SSR within n pulls, event&quot;, 
+     xlab = &quot;Number of trials (n)&quot;, ylab = &quot;Probability&quot;)
+abline(h = 0.50, col = 2)
+abline(h = 0.95, col = 3)
+abline(h = 0.99, col = 4)
+
+p50 = which.min(abs((1-fi)-0.5))
+p95 = which.min(abs((1-fi)-0.95))
+p99 = which.min(abs((1-fi)-0.99))
+
+abline(v = p50, col = 2, lty = 2)
+abline(v = p95, col = 3, lty = 2)
+abline(v = p99, col = 4, lty = 2)
+abline(v = N, col = 6, lty = 3)
+
+legend(&#39;bottomright&#39;, legend=c(&#39;pity threshold&#39;, &#39;P = 50%&#39;, &#39;P = 95%&#39;, &#39;P = 99%&#39;), 
+       col = c(6, 2, 3, 4), lty = 1)</code></pre>
+<p><img src="figure/genshin.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>(paste(&quot;Player has 50% probability to pull their first SSR within&quot;, p50, &quot;pulls.&quot;))</code></pre>
+<pre><code>[1] &quot;Player has 50% probability to pull their first SSR within 42 pulls.&quot;</code></pre>
+<pre class="r"><code>(paste(&quot;Player has 95% probability to pull their first SSR within&quot;, p95, &quot;pulls.&quot;))</code></pre>
+<pre><code>[1] &quot;Player has 95% probability to pull their first SSR within 81 pulls.&quot;</code></pre>
+<pre class="r"><code>(paste(&quot;Player has 99% probability to pull their first SSR within&quot;, p99, &quot;pulls.&quot;))</code></pre>
+<pre><code>[1] &quot;Player has 99% probability to pull their first SSR within 83 pulls.&quot;</code></pre>
+</div>
+<div id="remarks" class="section level3">
+<h3>Remarks:</h3>
+<p>We can see that the event probabilities decrease the number of pulls required to hit 50% probability of obtaining 1 SSR character, but has very little effect on the number of pulls required to hit 95% and 99% probability. This is unsurprising because we can easily observe that the 10-pull bonus offers a very small increment on the per-pull probability, and this increment is overpowered by the pity mechanism once that kicks in.</p>
+<p>One additional note is that when compared to the observations in the <a href="https://www.reddit.com/r/Genshin_Impact/comments/jod9o4/whale_watching_logs_2_the_blue_whale/">reddit empirical study</a>, we can see that our probability model agrees with their observation that there should be very few instances where more than 84 pulls are needed to pull one SSR character.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -652,6 +836,7 @@ loaded via a namespace (and not attached):
 [13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_3.6.2    
 [17] stringr_1.4.0   glue_1.3.2      httpuv_1.5.2    xfun_0.12      
 [21] yaml_2.2.1      compiler_3.6.2  htmltools_0.4.0 knitr_1.28     </code></pre>
+</div>
 </div>
 </div>
 
