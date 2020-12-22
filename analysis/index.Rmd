@@ -13,7 +13,7 @@ editor_options:
 
 Say you're me and instead of doing anything useful in life, you are playing gacha games. However, you're a broke and sad college student, so instead of paying for extra in-game currency like the game companies expect you to do, especially during your favorite character's rate-up banner, you have to work hard to save up for them. A natural question that follows is that, how much in game currency do you need to save up? 
 
-In other words, I forgot everything in probabilities so I'd like to review. But why not do it in a fun way. 
+In other words, I would like to review probabilities, but why not do it in a fun way. 
 
 
 ## Introduction
